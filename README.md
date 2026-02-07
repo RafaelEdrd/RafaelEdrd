@@ -67,7 +67,7 @@ Automação, pra mim, não é sobre velocidade.
 
 ## 🧠 Linguagens
 
-<img src="https://img.shields.io/badge/SQL-0A0A0A?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white"/>
 <img src="https://img.shields.io/badge/JavaScript-0A0A0A?style=for-the-badge&logo=javascript"/>
 <img src="https://img.shields.io/badge/TypeScript-0A0A0A?style=for-the-badge&logo=typescript"/>
 <img src="https://img.shields.io/badge/Python-0A0A0A?style=for-the-badge&logo=python"/>
@@ -84,9 +84,9 @@ Uso linguagens como ferramentas para estruturar dados, automatizar fluxos e sust
 
 <img src="https://img.shields.io/badge/Make-0A0A0A?style=for-the-badge&logo=make"/>
 <img src="https://img.shields.io/badge/n8n-0A0A0A?style=for-the-badge&logo=n8n"/>
-<img src="https://img.shields.io/badge/Power%20BI-0A0A0A?style=for-the-badge&logo=powerbi"/>
+<img src="https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black"/>
 <img src="https://img.shields.io/badge/APIs%20REST-0A0A0A?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/OpenAI-0A0A0A?style=for-the-badge&logo=openai"/>
+<img src="https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white"/>
 <img src="https://img.shields.io/badge/Google%20Sheets-0A0A0A?style=for-the-badge&logo=googlesheets"/>
 <img src="https://img.shields.io/badge/Notion-0A0A0A?style=for-the-badge&logo=notion"/>
 
