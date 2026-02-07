@@ -9,9 +9,9 @@ Automação de processos operacionais com foco em dados, métricas e impacto rea
 </p>
 
 <p>
-  <a href="https://rafael.dev">🌐 Site</a> ·
-  <a href="https://wa.me/SEU_NUMERO">💬 WhatsApp</a> ·
-  <a href="https://www.linkedin.com/in/SEU_LINKEDIN">🔗 LinkedIn</a>
+  <a href=>🌐 Site</a> ·
+  <a href=>💬 WhatsApp</a> ·
+  <a href="https://www.linkedin.com/in/rafaeleduardo-analyst/">🔗 LinkedIn</a>
 </p>
 
 <img src="https://img.shields.io/badge/Status-Em%20Produção-00E5FF?style=flat-square"/>
