@@ -10,7 +10,6 @@ Automação de processos operacionais com foco em dados, métricas e impacto rea
 
 <p>
   <a href=>🌐 Site</a> ·
-  <a href=>💬 WhatsApp</a> ·
   <a href="https://www.linkedin.com/in/rafaeleduardo-analyst/">🔗 LinkedIn</a>
 </p>
 
