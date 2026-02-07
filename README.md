@@ -20,75 +20,68 @@ Automação de processos operacionais com foco em dados, métricas e impacto rea
 
 </div>
 
----
+<br/>
+
+<table>
+<tr>
+<td width="60%" valign="top">
 
 ## 👋 Sobre mim
 
 Sou desenvolvedor focado em **automação de processos**, **integrações entre sistemas** e **dados aplicados à tomada de decisão**.
 
-Meu trabalho começa onde normalmente existe fricção:  
-processos manuais, operações dependentes de planilhas, informações espalhadas e decisões tomadas sem visibilidade clara.
+Trabalho onde normalmente existe fricção: processos manuais, planilhas paralelas, informações quebradas e decisões tomadas sem visibilidade clara.
 
-Meu objetivo é transformar esse cenário em **sistemas operacionais organizados**, onde:
-- processos são automatizados  
-- dados são confiáveis  
-- métricas fazem parte do dia a dia  
+Meu objetivo é transformar esse cenário em **sistemas operacionais organizados**, onde processos são automatizados, dados são confiáveis e métricas fazem parte do dia a dia.
 
-Mais do que entregar automações pontuais, eu construo **infraestrutura operacional**,algo que possa evoluir, escalar e ser entendido por quem usa.
-
-Automação, pra mim, não é sobre fazer mais rápido.  
+Automação, pra mim, não é sobre velocidade.  
 É sobre **reduzir ruído, aumentar clareza e criar confiança no processo**.
 
----
+</td>
+
+<td width="40%" valign="top">
 
 ## 📊 Como eu gero impacto
 
-<table>
-<tr>
-<td>
+**Visão de sistema**
+- Entendimento do processo real  
+- Pensamento orientado a fluxo  
+- Decisão guiada por dados  
 
-### 🧠 Visão de sistema
+<br/>
 
-- Entendimento profundo do processo real  
-- Pensamento orientado a fluxo, não a tarefas isoladas  
-- Decisões guiadas por dados e métricas  
-
-</td>
-<td>
-
-### ⚙️ Execução técnica
-
-- Automação no-code, low-code e código  
+**Execução técnica**
+- Automação no / low / code  
 - Integrações via APIs REST  
-- Dashboards operacionais e comerciais  
-- IA aplicada de forma prática, sem hype  
+- Dashboards operacionais  
+- IA aplicada sem hype  
 
 </td>
 </tr>
 </table>
 
----
+<br/>
+
+<table>
+<tr>
+<td width="50%" align="center">
 
 ## 🧠 Linguagens
-
-<div align="center">
 
 <img src="https://img.shields.io/badge/SQL-0A0A0A?style=for-the-badge"/>
 <img src="https://img.shields.io/badge/JavaScript-0A0A0A?style=for-the-badge&logo=javascript"/>
 <img src="https://img.shields.io/badge/TypeScript-0A0A0A?style=for-the-badge&logo=typescript"/>
 <img src="https://img.shields.io/badge/Python-0A0A0A?style=for-the-badge&logo=python"/>
 
-</div>
-
-<p align="center">
-Uso linguagens como ferramentas para estruturar dados, automatizar fluxos e dar suporte a sistemas maiores.
+<p>
+Uso linguagens como ferramentas para estruturar dados, automatizar fluxos e sustentar sistemas maiores.
 </p>
 
----
+</td>
+
+<td width="50%" align="center">
 
 ## 🛠️ Tecnologias
-
-<div align="center">
 
 <img src="https://img.shields.io/badge/Make-0A0A0A?style=for-the-badge&logo=make"/>
 <img src="https://img.shields.io/badge/n8n-0A0A0A?style=for-the-badge&logo=n8n"/>
@@ -98,19 +91,25 @@ Uso linguagens como ferramentas para estruturar dados, automatizar fluxos e dar 
 <img src="https://img.shields.io/badge/Google%20Sheets-0A0A0A?style=for-the-badge&logo=googlesheets"/>
 <img src="https://img.shields.io/badge/Notion-0A0A0A?style=for-the-badge&logo=notion"/>
 
-</div>
-
-<p align="center">
-Ferramentas são escolhidas pelo problema — não pelo hype.
+<p>
+Ferramentas escolhidas pelo problema, não pelo hype.
 </p>
 
----
+</td>
+</tr>
+</table>
+
+<br/>
+
+<table>
+<tr>
+<td width="60%" valign="top">
 
 ## 🧠 Metodologia
 
 ```text
-1. Entender o processo real (não o ideal)
-2. Mapear dados e métricas que importam
+1. Entender o processo real
+2. Mapear dados e métricas
 3. Desenhar arquitetura pensando em escala
-4. Automatizar com validação e monitoramento
-5. Medir, iterar e evoluir continuamente
+4. Automatizar com validação
+5. Medir, iterar e evoluir
