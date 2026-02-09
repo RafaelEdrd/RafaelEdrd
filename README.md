@@ -71,6 +71,7 @@ Automação, pra mim, não é sobre velocidade.
 <img src="https://img.shields.io/badge/JavaScript-0A0A0A?style=for-the-badge&logo=javascript"/>
 <img src="https://img.shields.io/badge/TypeScript-0A0A0A?style=for-the-badge&logo=typescript"/>
 <img src="https://img.shields.io/badge/Python-0A0A0A?style=for-the-badge&logo=python"/>
+<img src= "https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/>
 
 <p>
 Uso linguagens como ferramentas para estruturar dados, automatizar fluxos e sustentar sistemas maiores.
