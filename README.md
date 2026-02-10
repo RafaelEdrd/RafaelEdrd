@@ -1,8 +1,6 @@
 <div align="center">
 
-<h1>Rafael Eduardo</h1>
-
-<p><strong>Automation Engineer · Data · Applied AI</strong></p>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=210&color=0:00E5FF,50:7C4DFF,100:00C853&text=Rafael%20Eduardo&fontAlignY=35&fontColor=FFFFFF&fontSize=52&desc=Automation%20Engineer%20%C2%B7%20Data%20%C2%B7%20Applied%20AI&descAlignY=55&descSize=18"/>
 
 <p>
 Automação de processos operacionais com foco em dados, métricas e impacto real.
