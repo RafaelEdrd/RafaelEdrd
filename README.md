@@ -1,113 +1,149 @@
+<!-- ╔══════════════════════════════════════════════════════════════╗ -->
+<!-- ║          RAFAEL EDUARDO — GitHub Profile README             ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════╝ -->
+
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=210&color=0:00E5FF,50:7C4DFF,100:00C853&text=Rafael%20Eduardo&fontAlignY=35&fontColor=FFFFFF&fontSize=52&desc=Automation%20Engineer%20%C2%B7%20Data%20%C2%B7%20Applied%20AI&descAlignY=55&descSize=18"/>
-
-<p>
-Automação de processos operacionais com foco em dados, métricas e impacto real.
-</p>
-
-<p>
-  <a href=>🌐 Site</a> ·
-  <a href="https://www.linkedin.com/in/rafaeleduardo-analyst/">🔗 LinkedIn</a>
-</p>
-
-<img src="https://img.shields.io/badge/Status-Em%20Produção-00E5FF?style=flat-square"/>
-<img src="https://img.shields.io/badge/Focus-Automation%20%26%20Data-7C4DFF?style=flat-square"/>
-<img src="https://img.shields.io/badge/Mindset-System%20Thinking-00C853?style=flat-square"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Rafael%20Eduardo&fontSize=48&fontColor=ffffff&animation=twinkling&fontAlignY=38&desc=Analista%20de%20Dados%20%7C%20Desenvolvedor%20Full-Stack%20%7C%20Builder&descAlignY=60&descSize=18" width="100%"/>
 
 </div>
 
-<br/>
+<div align="center">
 
-<table>
-<tr>
-<td width="60%" valign="top">
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=24&duration=2800&pause=1200&color=3B6BFF&center=true&vCenter=true&width=750&lines=Transformando+dados+em+decis%C3%B5es+estrat%C3%A9gicas+%F0%9F%93%8A;Construindo+ferramentas+que+realmente+funcionam+%E2%9A%A1;Do+raw+data+ao+insight+sem+enrola%C3%A7%C3%A3o+%F0%9F%94%8D;Full-Stack+%2B+BI+%3D+solu%C3%A7%C3%B5es+completas+de+ponta+a+ponta+%F0%9F%8E%AF)](https://git.io/typing-svg)
 
-## 👋 Sobre mim
+</div>
 
-Sou desenvolvedor focado em **automação de processos**, **integrações entre sistemas** e **dados aplicados à tomada de decisão**.
+---
 
-Trabalho onde normalmente existe fricção: processos manuais, planilhas paralelas, informações quebradas e decisões tomadas sem visibilidade clara.
+## 🧠 Sobre mim
 
-Meu objetivo é transformar esse cenário em **sistemas operacionais organizados**, onde processos são automatizados, dados são confiáveis e métricas fazem parte do dia a dia.
+```python
+rafael = {
+    "nome"       : "Rafael Eduardo",
+    "papel"      : ["Analista de Dados", "Desenvolvedor Full-Stack", "Builder"],
+    "foco"       : ["Business Intelligence", "Visualizacao de Dados", "Automacao"],
+    "ferramentas": ["Python", "JavaScript", "SQL", "Chart.js", "Google Sheets"],
+    "filosofia"  : "Dados sem contexto sao so numeros. Contexto sem dados e so opiniao.",
+    "atualmente" : "Construindo ferramentas de BI que rodam no browser, sem infraestrutura",
+    "diferencial": "Une visao analitica com capacidade de desenvolvimento end-to-end",
+}
+```
 
-Automação, pra mim, não é sobre velocidade.  
-É sobre **reduzir ruído, aumentar clareza e criar confiança no processo**.
+---
 
-</td>
+## 📊 O que eu faço de verdade
 
-<td width="40%" valign="top">
+<div align="center">
 
-## 📊 Como eu gero impacto
+| 📈 Analise de Dados | ⚡ Desenvolvimento | 🛠️ Automacao |
+|:---:|:---:|:---:|
+| Dashboards interativos | Aplicacoes full-stack | Pipelines de dados |
+| KPIs e metricas de negocio | Ferramentas sem infraestrutura | Integracao com Google Sheets |
+| Visualizacao com Chart.js | Sistemas com hierarquia de acesso | Exportacao XLSX e CSV |
+| Projecoes e tendencias | Branding configuravel via codigo | Reports automaticos |
 
-**Visão de sistema**
-- Entendimento do processo real  
-- Pensamento orientado a fluxo  
-- Decisão guiada por dados  
+</div>
 
-<br/>
+---
 
-**Execução técnica**
-- Automação no / low / code  
-- Integrações via APIs REST  
-- Dashboards operacionais  
-- IA aplicada sem hype  
+## 🚀 Stack Principal
 
-</td>
-</tr>
-</table>
+<div align="center">
 
-<br/>
+**Dados e BI**
 
-<table>
-<tr>
-<td width="50%" align="center">
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Google Sheets](https://img.shields.io/badge/Google_Sheets-34A853?style=for-the-badge&logo=googlesheets&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
+![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
 
-## 🧠 Linguagens
+**Desenvolvimento**
 
-<img src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white"/>
-<img src="https://img.shields.io/badge/JavaScript-0A0A0A?style=for-the-badge&logo=javascript"/>
-<img src="https://img.shields.io/badge/TypeScript-0A0A0A?style=for-the-badge&logo=typescript"/>
-<img src="https://img.shields.io/badge/Python-0A0A0A?style=for-the-badge&logo=python"/>
-<img src= "https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/>
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 
-<p>
-Uso linguagens como ferramentas para estruturar dados, automatizar fluxos e sustentar sistemas maiores.
-</p>
+**Ferramentas**
 
-</td>
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
-<td width="50%" align="center">
+</div>
 
-## 🛠️ Tecnologias
+---
 
-<img src="https://img.shields.io/badge/Make-0A0A0A?style=for-the-badge&logo=make"/>
-<img src="https://img.shields.io/badge/n8n-0A0A0A?style=for-the-badge&logo=n8n"/>
-<img src="https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black"/>
-<img src="https://img.shields.io/badge/APIs%20REST-0A0A0A?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white"/>
-<img src="https://img.shields.io/badge/Google%20Sheets-0A0A0A?style=for-the-badge&logo=googlesheets"/>
-<img src="https://img.shields.io/badge/Notion-0A0A0A?style=for-the-badge&logo=notion"/>
+## 📦 Projeto em destaque
 
-<p>
-Ferramentas escolhidas pelo problema, não pelo hype.
-</p>
+> ### 📊 Dashboard BI — Painel de Inteligência Comercial
+>
+> Painel de BI **completo** em HTML + CSS + JS puro. Sem framework. Sem build step. Sem infraestrutura.
+>
+> Mais de 25 KPIs dinâmicos calculados em tempo real, 10 gráficos interativos via Chart.js, ranking com pódio animado, Panorama Mensal com projeções e ticker rolante, autenticação com PBKDF2, hierarquia de usuários configurável e branding 100% personalizável.
+>
+> **Stack:** `JavaScript` `Chart.js` `SheetJS` `Web Crypto API` `LocalStorage`
+>
+> [![Ver Repositório](https://img.shields.io/badge/Ver%20Repositório-3b6bff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RafaelEdrd/Modelo-Sistema-de-Gerenciamento)
 
-</td>
-</tr>
-</table>
+---
 
-<br/>
+## 📈 Estatísticas do GitHub
 
-<table>
-<tr>
-<td width="60%" valign="top">
+<div align="center">
 
-## 🧠 Metodologia
+<img height="170em" src="https://github-readme-stats.vercel.app/api?username=RafaelEdrd&show_icons=true&theme=tokyonight&count_private=true&border_color=3b6bff&title_color=3b6bff&icon_color=00d4aa&text_color=c9d1d9&bg_color=0d1117&hide=issues"/>
 
-```text
-1. Entender o processo real
-2. Mapear dados e métricas
-3. Desenhar arquitetura pensando em escala
-4. Automatizar com validação
-5. Medir, iterar e evoluir
+</div>
+
+<div align="center">
+
+[![GitHub Streak](https://streak-stats.demolab.com?user=RafaelEdrd&theme=tokyonight&border=3b6bff&ring=3b6bff&fire=f4b942&currStreakLabel=00d4aa&sideLabels=c9d1d9&sideNums=ffffff&background=0d1117&locale=pt_BR)](https://git.io/streak-stats)
+
+</div>
+
+---
+
+## 🏆 Conquistas
+
+<div align="center">
+
+[![trophy](https://github-profile-trophy.vercel.app/?username=RafaelEdrd&theme=tokyonight&column=6&margin-w=8&margin-h=8&no-frame=true)](https://github.com/ryo-ma/github-profile-trophy)
+
+</div>
+
+---
+
+## 📉 Atividade de contribuições
+
+<div align="center">
+
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=RafaelEdrd&bg_color=0d1117&color=3b6bff&line=00d4aa&point=f4b942&area=true&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
+
+</div>
+
+---
+
+## 💬 Contato
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/RafaelEdrd)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RafaelEdrd)
+[![Site](https://img.shields.io/badge/Site-000000?style=for-the-badge&logo=google-chrome&logoColor=white)](https://rafaelanalyst.com.br/)
+
+</div>
+
+---
+
+<div align="center">
+
+*"Dados sem contexto são só números. Contexto sem dados é só opinião."*
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer&animation=twinkling" width="100%"/>
+
+</div>
