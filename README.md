@@ -4,15 +4,17 @@
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Rafael%20Eduardo&fontSize=48&fontColor=ffffff&animation=twinkling&fontAlignY=38&desc=Analista%20de%20Dados%20%7C%20Desenvolvedor%20Full-Stack%20%7C%20Builder&descAlignY=60&descSize=18" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=Rafael%20Eduardo&fontSize=52&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=Analista%20de%20Dados%20%7C%20Dev%20Full-Stack%20%7C%20Builder&descAlignY=62&descSize=18" width="100%"/>
 
 </div>
 
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=24&duration=2800&pause=1200&color=3B6BFF&center=true&vCenter=true&width=750&lines=Transformando+dados+em+decis%C3%B5es+estrat%C3%A9gicas+%F0%9F%93%8A;Construindo+ferramentas+que+realmente+funcionam+%E2%9A%A1;Do+raw+data+ao+insight+sem+enrola%C3%A7%C3%A3o+%F0%9F%94%8D;Full-Stack+%2B+BI+%3D+solu%C3%A7%C3%B5es+completas+de+ponta+a+ponta+%F0%9F%8E%AF)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=2800&pause=1200&color=3B6BFF&center=true&vCenter=true&width=750&lines=Transformando+dados+em+decis%C3%B5es+estrat%C3%A9gicas+%F0%9F%93%8A;Construindo+ferramentas+que+realmente+funcionam+%E2%9A%A1;Do+raw+data+ao+insight+sem+enrola%C3%A7%C3%A3o+%F0%9F%94%8D;Full-Stack+%2B+BI+%3D+solu%C3%A7%C3%B5es+de+ponta+a+ponta+%F0%9F%8E%AF)](https://git.io/typing-svg)
 
 </div>
+
+<br/>
 
 ---
 
@@ -23,27 +25,13 @@ rafael = {
     "nome"       : "Rafael Eduardo",
     "papel"      : ["Analista de Dados", "Desenvolvedor Full-Stack", "Builder"],
     "foco"       : ["Business Intelligence", "Visualização de Dados", "Automação"],
-    "ferramentas": ["Python", "JavaScript", "SQL", "Chart.js", "Google Sheets"],
+    "stack"      : ["Python", "JavaScript", "SQL", "Chart.js", "Google Sheets"],
     "filosofia"  : "Dados sem contexto são só números. Contexto sem dados é só opinião.",
     "atualmente" : "Construindo ferramentas de BI que rodam no navegador, sem infraestrutura",
     "diferencial": "Une visão analítica com capacidade de desenvolvimento end-to-end",
+    "aberto_a"   : ["Freelance", "Projetos de BI", "Colaborações open source"],
 }
 ```
-
----
-
-## 📊 O que eu faço de verdade
-
-<div align="center">
-
-| 📈 Analise de Dados | ⚡ Desenvolvimento | 🛠️ Automacao |
-|:---:|:---:|:---:|
-| Dashboards interativos | Aplicacoes full-stack | Pipelines de dados |
-| KPIs e metricas de negocio | Ferramentas sem infraestrutura | Integracao com Google Sheets |
-| Visualizacao com Chart.js | Sistemas com hierarquia de acesso | Exportacao XLSX e CSV |
-| Projecoes e tendencias | Branding configuravel via codigo | Reports automaticos |
-
-</div>
 
 ---
 
@@ -51,7 +39,7 @@ rafael = {
 
 <div align="center">
 
-**Dados e BI**
+**Dados & BI**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
@@ -78,13 +66,20 @@ rafael = {
 
 ---
 
-## 📦 Projeto em destaque
+## 📦 Projeto em Destaque
 
 > ### 📊 Dashboard BI — Painel de Inteligência Comercial
 >
-> Painel de BI **completo** em HTML + CSS + JS puro. Sem framework. Sem build step. Sem infraestrutura.
+> Painel de BI para equipes comerciais **sem servidor, sem deploy, sem custo fixo**. O arquivo abre direto no browser e carrega os dados via planilha.
 >
-> Mais de 25 KPIs dinâmicos calculados em tempo real, 10 gráficos interativos via Chart.js, ranking com pódio animado, Panorama Mensal com projeções e ticker rolante, autenticação com PBKDF2, hierarquia de usuários configurável e branding 100% personalizável.
+> Resolve um problema real: gestores que precisam de visibilidade sobre vendas e performance, mas não têm TI nem orçamento para ferramentas SaaS.
+>
+> **O que entrega:**
+> - Mais de 25 KPIs calculados localmente em tempo real
+> - 10 gráficos interativos com Chart.js
+> - Ranking com pódio animado + Panorama Mensal com projeções
+> - Autenticação PBKDF2 + hierarquia de usuários configurável
+> - Branding 100% personalizável via código
 >
 > **Stack:** `JavaScript` `Chart.js` `SheetJS` `Web Crypto API` `LocalStorage`
 >
@@ -96,29 +91,31 @@ rafael = {
 
 <div align="center">
 
+<!-- 
+  ╔══════════════════════════════════════════════════════╗
+  ║  Salve o arquivo stats-card.svg neste repositório   ║
+  ║  e referencie com o caminho abaixo.                  ║
+  ╚══════════════════════════════════════════════════════╝
+  
+  OPÇÃO 1 — SVG animado local (recomendado):
+  Faça upload do stats-card.svg para a raiz deste repo e use:
+-->
+
+<img src="./stats-card.svg" width="100%" alt="GitHub Stats — Rafael Eduardo"/>
+
+<!--
+  OPÇÃO 2 — Widgets tradicionais (fallback se preferir):
+
 <img height="170em" src="https://github-readme-stats.vercel.app/api?username=RafaelEdrd&show_icons=true&theme=tokyonight&count_private=true&border_color=3b6bff&title_color=3b6bff&icon_color=00d4aa&text_color=c9d1d9&bg_color=0d1117&hide=issues"/>
 
-</div>
-
-<div align="center">
-
 [![GitHub Streak](https://streak-stats.demolab.com?user=RafaelEdrd&theme=tokyonight&border=3b6bff&ring=3b6bff&fire=f4b942&currStreakLabel=00d4aa&sideLabels=c9d1d9&sideNums=ffffff&background=0d1117&locale=pt_BR)](https://git.io/streak-stats)
+-->
 
 </div>
 
 ---
 
-## 🏆 Conquistas
-
-<div align="center">
-
-[![trophy](https://github-profile-trophy.vercel.app/?username=RafaelEdrd&theme=tokyonight&column=6&margin-w=8&margin-h=8&no-frame=true)](https://github.com/ryo-ma/github-profile-trophy)
-
-</div>
-
----
-
-## 📉 Atividade de contribuições
+## 🌊 Atividade de Contribuições
 
 <div align="center">
 
