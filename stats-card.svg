@@ -60,7 +60,7 @@
   <rect x="179" y="92" width="143" height="3" rx="1.5" fill="#00d4aa"/>
   <text x="191" y="111" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e" letter-spacing="1">CONTRIB.</text>
   <text x="191" y="143" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="28" fill="#00d4aa">
-    58
+    38
     <animate attributeName="opacity" values="0;0;1" dur="0.8s" begin="0.2s" fill="freeze"/>
   </text>
   <text x="191" y="158" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e">total historico</text>
@@ -80,7 +80,7 @@
   <rect x="489" y="92" width="143" height="3" rx="1.5" fill="#9f7aea"/>
   <text x="501" y="111" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e" letter-spacing="1">REPOS</text>
   <text x="501" y="143" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="28" fill="#9f7aea">
-    3
+    1
     <animate attributeName="opacity" values="0;0;1" dur="0.8s" begin="0.4s" fill="freeze"/>
   </text>
   <text x="501" y="158" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e">publicos</text>
