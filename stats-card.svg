@@ -1,0 +1,129 @@
+<svg width="680" height="320" viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      .mono { font-family: 'JetBrains Mono', monospace; }
+      .fade-in { animation: fadeIn 0.6s ease both; }
+      @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+      @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+      @keyframes dash { from { stroke-dashoffset: 565; } to { stroke-dashoffset: 0; } }
+      @keyframes barJS  { from { width: 0; } to { width: 72%; } }
+      @keyframes barHTML{ from { width: 0; } to { width: 18%; } }
+      @keyframes barCSS { from { width: 0; } to { width: 10%; } }
+    </style>
+    <linearGradient id="bg" x1="0" y1="0" x2="680" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0d1321"/>
+    </linearGradient>
+    <clipPath id="js-clip"><rect x="0" y="0" width="0" height="8" rx="4"><animate attributeName="width" from="0" to="252" dur="1.2s" begin="1s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect></clipPath>
+    <clipPath id="html-clip"><rect x="0" y="0" width="0" height="8" rx="4"><animate attributeName="width" from="0" to="63" dur="1.2s" begin="1.2s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect></clipPath>
+    <clipPath id="css-clip"><rect x="0" y="0" width="0" height="8" rx="4"><animate attributeName="width" from="0" to="35" dur="1.2s" begin="1.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect></clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="680" height="320" rx="16" fill="url(#bg)"/>
+  <rect width="680" height="320" rx="16" fill="none" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="680" height="3" rx="1.5" fill="#3b6bff" opacity="0.8"/>
+
+  <!-- Header -->
+  <circle cx="44" cy="44" r="20" fill="#3b6bff" opacity="0.2"/>
+  <circle cx="44" cy="44" r="20" fill="none" stroke="#3b6bff" stroke-width="1.5"/>
+  <text x="44" y="49" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="13" fill="#3b6bff">RE</text>
+
+  <text x="74" y="40" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="15" fill="#e6edf3">RafaelEdrd</text>
+  <text x="74" y="56" font-family="'JetBrains Mono',monospace" font-size="11" fill="#3b6bff">github.com/RafaelEdrd</text>
+
+  <!-- Status dot -->
+  <circle cx="636" cy="44" r="5" fill="#00d4aa">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="622" y="48" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="11" fill="#00d4aa">ativo</text>
+
+  <!-- Divider -->
+  <line x1="24" y1="76" x2="656" y2="76" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Stat cards row -->
+  <!-- Card 1: Commits -->
+  <rect x="24" y="92" width="143" height="72" rx="10" fill="#0d1321" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="24" y="92" width="143" height="3" rx="1.5" fill="#3b6bff"/>
+  <text x="36" y="111" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e" letter-spacing="1">COMMITS</text>
+  <text x="36" y="143" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="28" fill="#3b6bff">
+    9
+    <animate attributeName="opacity" values="0;0;1" dur="0.8s" begin="0.1s" fill="freeze"/>
+  </text>
+  <text x="36" y="158" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e">ultimo ano</text>
+
+  <!-- Card 2: Contribuicoes -->
+  <rect x="179" y="92" width="143" height="72" rx="10" fill="#0d1321" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="179" y="92" width="143" height="3" rx="1.5" fill="#00d4aa"/>
+  <text x="191" y="111" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e" letter-spacing="1">CONTRIB.</text>
+  <text x="191" y="143" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="28" fill="#00d4aa">
+    58
+    <animate attributeName="opacity" values="0;0;1" dur="0.8s" begin="0.2s" fill="freeze"/>
+  </text>
+  <text x="191" y="158" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e">total historico</text>
+
+  <!-- Card 3: Streak -->
+  <rect x="334" y="92" width="143" height="72" rx="10" fill="#0d1321" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="334" y="92" width="143" height="3" rx="1.5" fill="#f4b942"/>
+  <text x="346" y="111" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e" letter-spacing="1">STREAK MAX</text>
+  <text x="346" y="143" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="28" fill="#f4b942">
+    4
+    <animate attributeName="opacity" values="0;0;1" dur="0.8s" begin="0.3s" fill="freeze"/>
+  </text>
+  <text x="346" y="158" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e">dias consecutivos</text>
+
+  <!-- Card 4: Repos -->
+  <rect x="489" y="92" width="143" height="72" rx="10" fill="#0d1321" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="489" y="92" width="143" height="3" rx="1.5" fill="#9f7aea"/>
+  <text x="501" y="111" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e" letter-spacing="1">REPOS</text>
+  <text x="501" y="143" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="28" fill="#9f7aea">
+    3
+    <animate attributeName="opacity" values="0;0;1" dur="0.8s" begin="0.4s" fill="freeze"/>
+  </text>
+  <text x="501" y="158" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e">publicos</text>
+
+  <!-- Divider -->
+  <line x1="24" y1="182" x2="656" y2="182" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Languages section -->
+  <text x="24" y="202" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b949e" letter-spacing="1">LINGUAGENS</text>
+
+  <!-- JS Bar -->
+  <text x="24" y="224" font-family="'JetBrains Mono',monospace" font-size="12" fill="#c9d1d9">JavaScript</text>
+  <rect x="130" y="215" width="350" height="8" rx="4" fill="#1a2232"/>
+  <rect x="130" y="215" width="0" height="8" rx="4" fill="#f4b942" clip-path="url(#js-clip)">
+    <animate attributeName="width" from="0" to="252" dur="1.2s" begin="1s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+  </rect>
+  <text x="492" y="224" font-family="'JetBrains Mono',monospace" font-size="11" fill="#8b949e">72%</text>
+
+  <!-- HTML Bar -->
+  <text x="24" y="250" font-family="'JetBrains Mono',monospace" font-size="12" fill="#c9d1d9">HTML</text>
+  <rect x="130" y="241" width="350" height="8" rx="4" fill="#1a2232"/>
+  <rect x="130" y="241" width="0" height="8" rx="4" fill="#e34c26" clip-path="url(#html-clip)">
+    <animate attributeName="width" from="0" to="63" dur="1.2s" begin="1.2s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+  </rect>
+  <text x="492" y="250" font-family="'JetBrains Mono',monospace" font-size="11" fill="#8b949e">18%</text>
+
+  <!-- CSS Bar -->
+  <text x="24" y="276" font-family="'JetBrains Mono',monospace" font-size="12" fill="#c9d1d9">CSS</text>
+  <rect x="130" y="267" width="350" height="8" rx="4" fill="#1a2232"/>
+  <rect x="130" y="267" width="0" height="8" rx="4" fill="#3b6bff" clip-path="url(#css-clip)">
+    <animate attributeName="width" from="0" to="35" dur="1.2s" begin="1.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+  </rect>
+  <text x="492" y="276" font-family="'JetBrains Mono',monospace" font-size="11" fill="#8b949e">10%</text>
+
+  <!-- Ring chart (streak) -->
+  <g transform="translate(560, 248)">
+    <circle cx="0" cy="0" r="36" fill="none" stroke="#1a2232" stroke-width="7"/>
+    <circle cx="0" cy="0" r="36" fill="none" stroke="#f4b942" stroke-width="7"
+      stroke-linecap="round"
+      stroke-dasharray="226" stroke-dashoffset="226">
+      <animate attributeName="stroke-dashoffset" from="226" to="210" dur="1.4s" begin="0.8s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+    </circle>
+    <text x="0" y="-6" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="16" fill="#f4b942">4</text>
+    <text x="0" y="10" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#8b949e">dias</text>
+  </g>
+</svg>
