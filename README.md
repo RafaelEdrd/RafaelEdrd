@@ -22,11 +22,11 @@
 rafael = {
     "nome"       : "Rafael Eduardo",
     "papel"      : ["Analista de Dados", "Desenvolvedor Full-Stack", "Builder"],
-    "foco"       : ["Business Intelligence", "Visualizacao de Dados", "Automacao"],
+    "foco"       : ["Business Intelligence", "Visualização de Dados", "Automação"],
     "ferramentas": ["Python", "JavaScript", "SQL", "Chart.js", "Google Sheets"],
-    "filosofia"  : "Dados sem contexto sao so numeros. Contexto sem dados e so opiniao.",
-    "atualmente" : "Construindo ferramentas de BI que rodam no browser, sem infraestrutura",
-    "diferencial": "Une visao analitica com capacidade de desenvolvimento end-to-end",
+    "filosofia"  : "Dados sem contexto são só números. Contexto sem dados é só opinião.",
+    "atualmente" : "Construindo ferramentas de BI que rodam no navegador, sem infraestrutura",
+    "diferencial": "Une visão analítica com capacidade de desenvolvimento end-to-end",
 }
 ```
 
