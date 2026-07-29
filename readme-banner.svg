@@ -1,1 +1,96 @@
 
+<svg width="1200" height="320" viewBox="0 0 1200 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .display { font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; }
+      .mono    { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+      .sans    { font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+
+      @keyframes blink {
+        0%, 50%   { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes lineDraw {
+        from { stroke-dashoffset: 1080; }
+        to   { stroke-dashoffset: 0; }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.4; }
+      }
+
+      .cursor       { animation: blink 1s infinite; }
+      .fade         { animation: fadeInUp 0.8s ease-out both; }
+      .fade-1       { animation-delay: 0.2s; }
+      .fade-2       { animation-delay: 0.5s; }
+      .fade-3       { animation-delay: 0.9s; }
+      .fade-4       { animation-delay: 1.3s; }
+      .fade-5       { animation-delay: 1.7s; }
+      .line-anim    { stroke-dasharray: 1080; animation: lineDraw 1.2s ease-out both; }
+      .pulse-green  { animation: pulse 2s infinite; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="320" fill="#0D0F12"/>
+
+  <!-- linha superior desenhada -->
+  <line x1="60" y1="60" x2="1140" y2="60" stroke="#242A33" stroke-width="1" class="line-anim"/>
+
+  <!-- meta topo -->
+  <g class="mono fade fade-1" font-size="12" fill="#4A5158" letter-spacing="1">
+    <text x="60" y="45">RRE ·  registro operacional  ·  2026</text>
+    <text x="1140" y="45" text-anchor="end">rafaelanalyst.com.br</text>
+  </g>
+
+  <!-- nome grande -->
+  <g class="fade fade-2" transform="translate(60,155)">
+    <text class="display" font-size="60" fill="#E8E6E1" letter-spacing="1" transform="scale(1.05,1)">RAFAEL EDUARDO</text>
+  </g>
+
+  <!-- cargo -->
+  <text class="sans fade fade-3" x="62" y="200" font-size="22" fill="#79828F">Desenvolvedor de Soluções e Automação</text>
+
+  <!-- log operacional, à direita -->
+  <g class="mono" font-size="13">
+    <g class="fade fade-3">
+      <text x="880" y="130" fill="#4A5158">
+        <tspan fill="#4E9A6B" class="pulse-green">●</tspan>  PRJ-001  em_producao
+      </text>
+    </g>
+    <g class="fade fade-4">
+      <text x="880" y="150" fill="#4A5158">
+        <tspan fill="#4E9A6B" class="pulse-green">●</tspan>  PRJ-002  em_producao
+      </text>
+    </g>
+    <g class="fade fade-4">
+      <text x="880" y="170" fill="#4A5158">
+        <tspan fill="#4E9A6B" class="pulse-green">●</tspan>  PRJ-003  em_producao
+      </text>
+    </g>
+    <g class="fade fade-5">
+      <text x="880" y="190" fill="#4A5158">
+        <tspan fill="#C89A4A">○</tspan>  PRJ-004  em_manutencao
+      </text>
+    </g>
+  </g>
+
+  <!-- prompt de terminal com cursor piscando -->
+  <g class="mono fade fade-5" transform="translate(62,260)">
+    <text font-size="14" fill="#4E9A6B">$</text>
+    <text x="18" font-size="14" fill="#79828F">status --all-projects</text>
+    <rect x="205" y="-11" width="8" height="14" fill="#4E9A6B" class="cursor"/>
+  </g>
+
+  <!-- linha inferior -->
+  <line x1="60" y1="285" x2="1140" y2="285" stroke="#242A33" stroke-width="1"/>
+
+  <!-- stack rodapé -->
+  <g class="mono fade fade-5" font-size="12" fill="#4A5158" letter-spacing="1">
+    <text x="60" y="308">PHP · JAVASCRIPT · SQL · APPS SCRIPT · POWER BI · SUPABASE</text>
+    <text x="1140" y="308" text-anchor="end">v2026.07</text>
+  </g>
+</svg>
