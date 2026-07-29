@@ -1,146 +1,184 @@
-<!-- ╔══════════════════════════════════════════════════════════════╗ -->
-<!-- ║          RAFAEL EDUARDO — GitHub Profile README             ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════╝ -->
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║       RAFAEL EDUARDO — GitHub Profile · v2026.07             ║
+  ║       Conceito: Ledger (registro operacional)                ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=Rafael%20Eduardo&fontSize=52&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=Analista%20de%20Dados%20%7C%20Dev%20Full-Stack%20%7C%20Builder&descAlignY=62&descSize=18" width="100%"/>
+<img src="./readme-banner.svg" alt="Rafael Eduardo — Desenvolvedor de Soluções e Automação" width="100%">
 
 </div>
 
+<br>
+
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=2800&pause=1200&color=3B6BFF&center=true&vCenter=true&width=750&lines=Transformando+dados+em+decis%C3%B5es+estrat%C3%A9gicas+%F0%9F%93%8A;Construindo+ferramentas+que+realmente+funcionam+%E2%9A%A1;Do+raw+data+ao+insight+sem+enrola%C3%A7%C3%A3o+%F0%9F%94%8D;Full-Stack+%2B+BI+%3D+solu%C3%A7%C3%B5es+de+ponta+a+ponta+%F0%9F%8E%AF)](https://git.io/typing-svg)
+[![Typing](https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=500&size=22&duration=3500&pause=1000&color=E8E6E1&background=0D0F12&center=true&vCenter=true&width=900&height=60&lines=Processo+manual+vira+sistema.;Vim+do+backoffice%2C+aprendi+construindo.;Sistemas+em+producao%2C+nao+portfolio+de+aula.;Auditoria+de+credencial+antes+de+mexer.)](https://rafaelanalyst.com.br)
 
 </div>
 
-<br/>
+<br>
 
 ---
 
-## 🧠 Sobre mim
+## `01` &nbsp; Sobre
 
-```python
-rafael = {
-    "nome"       : "Rafael Eduardo",
-    "papel"      : ["Analista de Dados", "Desenvolvedor Full-Stack", "Builder"],
-    "foco"       : ["Business Intelligence", "Visualização de Dados", "Automação"],
-    "stack"      : ["Python", "JavaScript", "SQL", "Chart.js", "Google Sheets"],
-    "filosofia"  : "Dados sem contexto são só números. Contexto sem dados é só opinião.",
-    "atualmente" : "Construindo ferramentas de BI que rodam no navegador, sem infraestrutura",
-    "diferencial": "Une visão analítica com capacidade de desenvolvimento end-to-end",
-    "aberto_a"   : ["Freelance", "Projetos de BI", "Colaborações open source"],
-}
-```
+Desenvolvo e mantenho **sistemas web, sites e automações** para empresas que ainda dependem de planilha manual e processo por mensagem.
+
+Vim do backoffice. Passei pela operação de consórcio, e é por isso que os sistemas que eu construo resolvem o problema certo: já fui a pessoa que sofria com ele.
+
+Hoje sou **Analista de Inteligência Operacional** e, em paralelo, desenvolvedor freelancer.
+
+<br>
 
 ---
 
-## 🚀 Stack Principal
+## `02` &nbsp; Onde o código mora
+
+Meus projetos estão em produção com **usuário real**, em clientes reais, e por isso os repositórios são privados. Prefiro construir coisa que roda a manter portfólio público de código bonito que ninguém usa.
+
+Para ver os projetos com detalhe, o site tem tudo:
+
+<br>
 
 <div align="center">
 
-**Dados & BI**
+[![Site](https://img.shields.io/badge/rafaelanalyst.com.br-0D0F12?style=for-the-badge&logoColor=4E9A6B&labelColor=0D0F12)](https://rafaelanalyst.com.br)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0D0F12?style=for-the-badge&logo=linkedin&logoColor=79828F&labelColor=0D0F12)](https://linkedin.com/in/rafaeleduardo-analyst)
+[![Email](https://img.shields.io/badge/contato@rafaelanalyst.com.br-0D0F12?style=for-the-badge&logo=maildotru&logoColor=79828F&labelColor=0D0F12)](mailto:contato@rafaelanalyst.com.br)
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Google Sheets](https://img.shields.io/badge/Google_Sheets-34A853?style=for-the-badge&logo=googlesheets&logoColor=white)
-![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
-![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
+</div>
+
+<br>
+
+---
+
+## `03` &nbsp; Stack
+
+<table>
+<tr>
+<td valign="top" width="50%">
 
 **Desenvolvimento**
+```
+PHP        · aplicações com painel admin
+JavaScript · front-end interativo
+React      · SPA e componentes
+Node.js    · serverless e integrações
+```
 
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+**Dados**
+```
+SQL        · análise e regra de negócio
+MySQL      · bancos relacionais
+PostgreSQL · com Row Level Security
+Power BI   · dashboards operacionais
+```
 
-**Ferramentas**
+</td>
+<td valign="top" width="50%">
 
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+**Automação**
+```
+Apps Script · Google Workspace
+Make        · fluxos visuais
+n8n         · self-hosted
+APIs REST   · com log e retry
+```
 
-</div>
+**Infra e segurança**
+```
+Supabase  · auth e banco gerenciado
+Netlify   · sites e functions
+Hostinger · deploy via Git
+RLS       · isolamento por usuário
+```
+
+</td>
+</tr>
+</table>
+
+<br>
 
 ---
 
-## 📦 Projeto em Destaque
+## `04` &nbsp; Como eu trabalho
 
-> ### 📊 Dashboard BI — Painel de Inteligência Comercial
->
-> Painel de BI para equipes comerciais **sem servidor, sem deploy, sem custo fixo**. O arquivo abre direto no browser e carrega os dados via planilha.
->
-> Resolve um problema real: gestores que precisam de visibilidade sobre vendas e performance, mas não têm TI nem orçamento para ferramentas SaaS.
->
-> **O que entrega:**
-> - Mais de 25 KPIs calculados localmente em tempo real
-> - 10 gráficos interativos com Chart.js
-> - Ranking com pódio animado + Panorama Mensal com projeções
-> - Autenticação PBKDF2 + hierarquia de usuários configurável
-> - Branding 100% personalizável via código
->
-> **Stack:** `JavaScript` `Chart.js` `SheetJS` `Web Crypto API` `LocalStorage`
->
-> [![Ver Repositório](https://img.shields.io/badge/Ver%20Repositório-3b6bff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RafaelEdrd/Modelo-Sistema-de-Gerenciamento)
+<table>
+<tr>
+<td width="60" valign="top" align="center">
+
+`01`
+
+</td>
+<td>
+
+**Entendo antes de mexer.** Em código de terceiro, a primeira coisa que verifico é se tem credencial exposta. Só depois disso eu começo.
+
+</td>
+</tr>
+<tr>
+<td width="60" valign="top" align="center">
+
+`02`
+
+</td>
+<td>
+
+**Procuro o caso que quebra.** Toda regra de negócio tem exceção, e é ela que derruba a automação três semanas depois da entrega. Eu pergunto por ela antes de construir.
+
+</td>
+</tr>
+<tr>
+<td width="60" valign="top" align="center">
+
+`03`
+
+</td>
+<td>
+
+**Entrego em fatia, não em bloco.** Você vê algo funcionando na primeira semana. Não sumo por um mês para reaparecer com um sistema inteiro que talvez não seja o que você queria.
+
+</td>
+</tr>
+<tr>
+<td width="60" valign="top" align="center">
+
+`04`
+
+</td>
+<td>
+
+**Entrego e continuo respondendo.** Sai com documentação de manutenção, log de execução e o código no seu domínio. Você não fica refém de mim, e também não fica sozinho.
+
+</td>
+</tr>
+</table>
+
+<br>
 
 ---
 
-## 📈 Estatísticas do GitHub
+## `05` &nbsp; Registro de atividade
 
 <div align="center">
 
-<!-- 
-  ╔══════════════════════════════════════════════════════╗
-  ║  Salve o arquivo stats-card.svg neste repositório   ║
-  ║  e referencie com o caminho abaixo.                  ║
-  ╚══════════════════════════════════════════════════════╝
-  
-  OPÇÃO 1 — SVG animado local (recomendado):
-  Faça upload do stats-card.svg para a raiz deste repo e use:
--->
-
-<img src="./stats-card.svg" width="100%" alt="GitHub Stats — Rafael Eduardo"/>
-
-<!--
-  OPÇÃO 2 — Widgets tradicionais (fallback se preferir):
-
-<img height="170em" src="https://github-readme-stats.vercel.app/api?username=RafaelEdrd&show_icons=true&theme=tokyonight&count_private=true&border_color=3b6bff&title_color=3b6bff&icon_color=00d4aa&text_color=c9d1d9&bg_color=0d1117&hide=issues"/>
-
-[![GitHub Streak](https://streak-stats.demolab.com?user=RafaelEdrd&theme=tokyonight&border=3b6bff&ring=3b6bff&fire=f4b942&currStreakLabel=00d4aa&sideLabels=c9d1d9&sideNums=ffffff&background=0d1117&locale=pt_BR)](https://git.io/streak-stats)
--->
+[![Activity](https://github-readme-activity-graph.vercel.app/graph?username=RafaelEdrd&bg_color=0D0F12&color=E8E6E1&line=4E9A6B&point=C89A4A&area=true&hide_border=true&area_color=4E9A6B&custom_title=Contribui%C3%A7%C3%B5es%20recentes)](https://github.com/RafaelEdrd)
 
 </div>
 
----
-
-## 🌊 Atividade de Contribuições
-
-<div align="center">
-
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=RafaelEdrd&bg_color=0d1117&color=3b6bff&line=00d4aa&point=f4b942&area=true&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
-
-</div>
-
----
-
-## 💬 Contato
-
-<div align="center">
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/RafaelEdrd)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RafaelEdrd)
-[![Site](https://img.shields.io/badge/Site-000000?style=for-the-badge&logo=google-chrome&logoColor=white)](https://rafaelanalyst.com.br/)
-
-</div>
+<br>
 
 ---
 
 <div align="center">
 
-*"Dados sem contexto são só números. Contexto sem dados é só opinião."*
+<sub>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer&animation=twinkling" width="100%"/>
+`RRE.` &nbsp; · &nbsp; registro operacional &nbsp; · &nbsp; 2026 &nbsp; · &nbsp; [rafaelanalyst.com.br](https://rafaelanalyst.com.br)
+
+</sub>
 
 </div>
