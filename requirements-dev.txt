@@ -1,0 +1,2 @@
+# Optional: used only to regenerate the animation, not by GitHub Actions.
+Pillow>=10,<13

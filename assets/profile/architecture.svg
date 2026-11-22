@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="328" viewBox="0 0 1200 328" role="img" aria-label="Pipeline de engenharia: diagnosticar, modelar, implementar e observar">
+ <rect width="1200" height="328" rx="18" fill="#080B0F" />
+ <rect x="1" y="1" width="1198" height="326" rx="17" fill="none" stroke="#293440" stroke-width="2"/>
+ <text x="39" y="41" font-family="ui-monospace,Consolas,monospace" font-size="19" letter-spacing="3" fill="#76C5A2">MODELO OPERACIONAL  /  04 ETAPAS</text>
+ <text x="1160" y="41" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="17" fill="#8C9BA5">PRÁTICA / ENTREGA</text>
+ <g>
+   <rect x="35" y="75" width="264" height="163" rx="12" fill="#0C1116" stroke="#293440"/>
+   <text x="57" y="108" font-family="ui-monospace,Consolas,monospace" font-size="17" letter-spacing="2" fill="#76C5A2">01 / ENTENDER</text>
+   <text x="57" y="161" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="bold" fill="#EBF0EF">Contexto</text>
+   <text x="57" y="197" font-family="Arial,Helvetica,sans-serif" font-size="19" fill="#8C9BA5">Entender a operação</text>
+   </g><g>
+   <rect x="327" y="75" width="264" height="163" rx="12" fill="#0C1116" stroke="#293440"/>
+   <text x="349" y="108" font-family="ui-monospace,Consolas,monospace" font-size="17" letter-spacing="2" fill="#8CA9BA">02 / MODELAR</text>
+   <text x="349" y="161" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="bold" fill="#EBF0EF">Regras</text>
+   <text x="349" y="197" font-family="Arial,Helvetica,sans-serif" font-size="19" fill="#8C9BA5">Definir invariantes</text>
+   </g><g>
+   <rect x="619" y="75" width="264" height="163" rx="12" fill="#0C1116" stroke="#293440"/>
+   <text x="641" y="108" font-family="ui-monospace,Consolas,monospace" font-size="17" letter-spacing="2" fill="#8E9CA9">03 / ENTREGAR</text>
+   <text x="641" y="161" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="bold" fill="#EBF0EF">Entrega</text>
+   <text x="641" y="197" font-family="Arial,Helvetica,sans-serif" font-size="19" fill="#8C9BA5">Implementar com testes</text>
+   </g><g>
+   <rect x="911" y="75" width="264" height="163" rx="12" fill="#0C1116" stroke="#293440"/>
+   <text x="933" y="108" font-family="ui-monospace,Consolas,monospace" font-size="17" letter-spacing="2" fill="#76C5A2">04 / ACOMPANHAR</text>
+   <text x="933" y="161" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="bold" fill="#EBF0EF">Evidências</text>
+   <text x="933" y="197" font-family="Arial,Helvetica,sans-serif" font-size="19" fill="#8C9BA5">Logs e manutenção</text>
+   </g>
+ <path d="M299 155 H327 M591 155 H619 M883 155 H911" stroke="#76C5A2" stroke-width="4" stroke-linecap="round"/>
+ <path d="M317 148 l12 7 -12 7 M609 148 l12 7 -12 7 M901 148 l12 7 -12 7" stroke="#76C5A2" stroke-width="3" fill="none"/>
+ <text x="38" y="283" font-family="ui-monospace,Consolas,monospace" font-size="18" letter-spacing="1" fill="#8C9BA5">ENTRADA LEGÍVEL    /    DECISÃO EXPLÍCITA    /    MUDANÇA CONTROLADA    /    RESULTADO AUDITÁVEL</text>
+ </svg>

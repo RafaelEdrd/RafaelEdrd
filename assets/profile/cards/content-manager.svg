@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 280" width="980" height="280" role="img" aria-label="CONTENT MANAGER">
+      <rect width="980" height="280" rx="20" fill="#080B0F"/>
+      <rect x="1" y="1" width="978" height="278" rx="19" fill="none" stroke="#293440" stroke-width="2"/>
+      <path d="M0 0H980" stroke="#8E9CA9" stroke-width="5" opacity=".85"/>
+      <path d="M34 204 H946" stroke="#293440" stroke-width="1"/>
+      <text x="35" y="39" font-family="ui-monospace,Consolas,monospace" font-size="19" letter-spacing="3" fill="#8E9CA9">RA  /  PROJETO 08</text>
+      <text x="35" y="111" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="700" fill="#EBF0EF">CONTENT MANAGER</text>
+      <text x="36" y="157" font-family="Arial,Helvetica,sans-serif" font-size="23" fill="#8C9BA5">Fluxos editoriais, revisão e publicação</text>
+      <text x="36" y="241" font-family="ui-monospace,Consolas,monospace" font-size="19" fill="#8E9CA9" letter-spacing="1.2">PHP  /  MYSQL  /  CI</text>
+      <text x="935" y="239" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="18" fill="#8C9BA5">VER CÓDIGO  ›</text>
+      <path d="M670 65 L760 65 L813 111 L931 111" stroke="#8E9CA9" stroke-width="2" stroke-opacity="0.62" fill="none"/><path d="M670 87 L760 87 L813 133 L931 133" stroke="#8E9CA9" stroke-width="2" stroke-opacity="0.27" fill="none"/><path d="M670 109 L760 109 L813 155 L931 155" stroke="#8E9CA9" stroke-width="2" stroke-opacity="0.12" fill="none"/><circle cx="672" cy="65" r="5" fill="#8E9CA9" opacity="0.8"/><circle cx="760" cy="65" r="5" fill="#8E9CA9" opacity="0.75"/><circle cx="813" cy="111" r="6" fill="#8E9CA9" opacity="0.65"/><circle cx="931" cy="111" r="5" fill="#8E9CA9" opacity="0.9"/><circle cx="931" cy="154" r="3" fill="#8E9CA9" opacity="0.4"/>
+    </svg>
