@@ -1,12 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 280" width="980" height="280" role="img" aria-label="PROCESS FORGE">
-      <rect width="980" height="280" rx="20" fill="#080B0F"/>
-      <rect x="1" y="1" width="978" height="278" rx="19" fill="none" stroke="#293440" stroke-width="2"/>
-      <path d="M0 0H980" stroke="#76C5A2" stroke-width="5" opacity=".85"/>
-      <path d="M34 204 H946" stroke="#293440" stroke-width="1"/>
-      <text x="35" y="39" font-family="ui-monospace,Consolas,monospace" font-size="19" letter-spacing="3" fill="#76C5A2">RA  /  PROJETO 03</text>
-      <text x="35" y="111" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="700" fill="#EBF0EF">PROCESS FORGE</text>
-      <text x="36" y="157" font-family="Arial,Helvetica,sans-serif" font-size="23" fill="#8C9BA5">Pipelines declarativos e validação de DAG</text>
-      <text x="36" y="241" font-family="ui-monospace,Consolas,monospace" font-size="19" fill="#76C5A2" letter-spacing="1.2">NODE.JS  /  PIPELINE  /  TESTES</text>
-      <text x="935" y="239" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="18" fill="#8C9BA5">VER CÓDIGO  ›</text>
-      <path d="M670 65 L760 65 L813 111 L931 111" stroke="#76C5A2" stroke-width="2" stroke-opacity="0.62" fill="none"/><path d="M670 87 L760 87 L813 133 L931 133" stroke="#76C5A2" stroke-width="2" stroke-opacity="0.27" fill="none"/><path d="M670 109 L760 109 L813 155 L931 155" stroke="#76C5A2" stroke-width="2" stroke-opacity="0.12" fill="none"/><circle cx="672" cy="65" r="5" fill="#76C5A2" opacity="0.8"/><circle cx="760" cy="65" r="5" fill="#76C5A2" opacity="0.75"/><circle cx="813" cy="111" r="6" fill="#76C5A2" opacity="0.65"/><circle cx="931" cy="111" r="5" fill="#76C5A2" opacity="0.9"/><circle cx="931" cy="154" r="3" fill="#76C5A2" opacity="0.4"/>
-    </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="264" viewBox="0 0 980 264" role="img" aria-label="PROCESS FORGE: Pipelines declarativos e validação de DAG">
+        <rect width="980" height="264" rx="16" fill="#080B0F"/><rect x="1" y="1" width="978" height="262" rx="15" fill="none" stroke="#293440" stroke-width="2"/>
+        <path d="M0 3h980" stroke="#3D7060" stroke-width="4"/>
+        <text x="32" y="39" font-family="'DejaVu Sans Mono',Consolas,monospace" font-size="17" font-weight="400" fill="#76C5A2" text-anchor="start" letter-spacing="1.0">03  /  AUTOMAÇÃO</text>
+        <path d="M32 57h914" stroke="#293440" stroke-width="1"/>
+        <rect x="706" y="61" width="240" height="127" rx="9" fill="#0C1116" stroke="#293440"/>
+        <path d="M754 113L833 73M754 113L833 154M850 73L932 113M850 154L932 113" stroke="#3D7060" stroke-width="3" fill="none"/>
+        <circle cx="747" cy="113" r="15" fill="#10171D" stroke="#3D7060" stroke-width="2"/><circle cx="841" cy="73" r="15" fill="#10171D" stroke="#3D7060" stroke-width="2"/><circle cx="841" cy="154" r="15" fill="#10171D" stroke="#3D7060" stroke-width="2"/><circle cx="940" cy="113" r="15" fill="#10171D" stroke="#3D7060" stroke-width="2"/>
+        <circle cx="747" cy="113" r="4" fill="#76C5A2"/><circle cx="940" cy="113" r="4" fill="#76C5A2"/>
+        <text x="32" y="125" font-family="'DejaVu Sans',Arial,Helvetica,sans-serif" font-size="41" font-weight="700" fill="#EDF1F0" text-anchor="start" letter-spacing="0">PROCESS FORGE</text>
+        <text x="33" y="170" font-family="'DejaVu Sans',Arial,Helvetica,sans-serif" font-size="21" font-weight="400" fill="#8C9BA5" text-anchor="start" letter-spacing="0">Pipelines declarativos e validação de DAG</text>
+        <path d="M32 203h914" stroke="#293440"/>
+        <text x="33" y="239" font-family="'DejaVu Sans Mono',Consolas,monospace" font-size="17" font-weight="400" fill="#8C9BA5" text-anchor="start" letter-spacing="0">NODE.JS   /   PIPELINES   /   TESTES</text>
+        <text x="945" y="239" font-family="'DejaVu Sans Mono',Consolas,monospace" font-size="16" font-weight="400" fill="#76C5A2" text-anchor="end" letter-spacing="0">EXPLORAR  ↗</text>
+        </svg>

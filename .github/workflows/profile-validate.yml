@@ -8,6 +8,7 @@ on:
       - assets/profile/**
       - scripts/validate_profile.py
       - scripts/generate_visuals.py
+      - scripts/generate_hero.py
       - requirements-dev.txt
       - .github/workflows/profile-validate.yml
   pull_request:
@@ -16,6 +17,7 @@ on:
       - assets/profile/**
       - scripts/validate_profile.py
       - scripts/generate_visuals.py
+      - scripts/generate_hero.py
       - requirements-dev.txt
       - .github/workflows/profile-validate.yml
 

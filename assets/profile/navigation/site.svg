@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" role="img" aria-label="SITE E PORTFÓLIO">
+    <rect x="1" y="1" width="318" height="70" rx="10" fill="#0d1217" stroke="#303c43" stroke-width="1.5"/>
+    <rect x="1" y="1" width="3" height="70" rx="1.5" fill="#83968f"/>
+    <text x="22" y="23" font-family="Consolas,ui-monospace,monospace" font-size="12" letter-spacing="1" fill="#6f7c85">RA / 01</text>
+    <text x="22" y="51" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#edf0f1">SITE E PORTFÓLIO</text>
+    <path d="M280 29 h14 v14 M294 29 l-21 21" fill="none" stroke="#b7c2c4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
