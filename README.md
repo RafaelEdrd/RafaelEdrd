@@ -1,9 +1,9 @@
 <!--
   RAFAEL ANALYST / PROFILE
-  Version: 2.1-A (opção A: somente identidade visual)
+  Version: 2.1-A / header correction
   Design: restrained motion, strong typographic hierarchy, real project evidence.
   All project cards link to publicly accessible repositories.
-  The official original lockup is included unchanged; no remote image services.
+  The exact official logo is incorporated proportionally into the hero. No duplicate block below it.
 -->
 
 <p align="center">
@@ -13,30 +13,19 @@
   </picture>
 </p>
 
+<!-- Compact navigation: SVG labels remain clickable links, without default blue hyperlink styling. -->
 <p align="center">
-  <a href="https://rafaelanalyst.com.br" title="Rafael Analyst">
-    <img src="./assets/profile/brand/rafael-analyst-oficial.png" width="520" alt="Logomarca oficial RA Rafael Analyst, sem assinatura adicional, sobre fundo preto" />
-  </a>
+  <a href="https://rafaelanalyst.com.br" title="Site e portfólio"><img src="./assets/profile/navigation/site.svg" width="208" alt="Abrir site e portfólio" /></a>
+  <a href="https://www.linkedin.com/in/rafaeleduardo-analyst/" title="LinkedIn"><img src="./assets/profile/navigation/linkedin.svg" width="208" alt="Abrir LinkedIn" /></a>
+  <a href="mailto:contato@rafaelanalyst.com.br" title="Contato"><img src="./assets/profile/navigation/contato.svg" width="208" alt="Enviar e-mail de contato" /></a>
 </p>
 
 <p align="center">
-  <a href="https://rafaelanalyst.com.br">Site e portfólio</a>
-  &nbsp; / &nbsp;
-  <a href="https://www.linkedin.com/in/rafaeleduardo-analyst/">LinkedIn</a>
-  &nbsp; / &nbsp;
-  <a href="mailto:contato@rafaelanalyst.com.br">Contato</a>
-</p>
-
-<p align="center">
-  <a href="#sobre">01 — Sobre</a>
-  &nbsp; · &nbsp;
-  <a href="#engenharia">02 — Engenharia</a>
-  &nbsp; · &nbsp;
-  <a href="#projetos">03 — Projetos</a>
-  &nbsp; · &nbsp;
-  <a href="#tecnologias">04 — Tecnologias</a>
-  &nbsp; · &nbsp;
-  <a href="#bastidores">05 — Bastidores</a>
+  <a href="#sobre"><img src="./assets/profile/navigation/sobre.svg" width="127" alt="01 Sobre" /></a>
+  <a href="#engenharia"><img src="./assets/profile/navigation/engenharia.svg" width="127" alt="02 Engenharia" /></a>
+  <a href="#projetos"><img src="./assets/profile/navigation/projetos.svg" width="127" alt="03 Projetos" /></a>
+  <a href="#tecnologias"><img src="./assets/profile/navigation/tecnologias.svg" width="127" alt="04 Tecnologias" /></a>
+  <a href="#bastidores"><img src="./assets/profile/navigation/bastidores.svg" width="127" alt="05 Bastidores" /></a>
 </p>
 
 ---

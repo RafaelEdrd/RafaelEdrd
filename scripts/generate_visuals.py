@@ -85,24 +85,26 @@ architecture = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="
  </svg>'''
 write(ASSETS/'architecture.svg', architecture)
 
-# GIF animation is used intentionally: it is image-only, self-hosted, no JavaScript
-# execution and does not depend on third-party stat/image services.
+# GIF animation is used intentionally: image-only, self-hosted, no scripts.
+# Geometry is symmetric, with aligned labels and no moving white/orbiting dot.
 W, H = 1200, 430
-FPS = 58
+FRAME_COUNT = 48
+
+
 def pick_font(variants: tuple[str, ...]) -> str:
-    # Keep regeneration possible on Linux, Windows and macOS without bundling font files.
-    search_roots = (
+    roots = (
         Path('/usr/share/fonts/truetype/dejavu'),
         Path('/usr/share/fonts/truetype/liberation2'),
         Path(os.getenv('WINDIR', 'C:/Windows')) / 'Fonts',
         Path('/System/Library/Fonts'),
     )
-    for root in search_roots:
+    for root in roots:
         for name in variants:
             candidate = root / name
             if candidate.is_file():
                 return str(candidate)
-    raise RuntimeError('Fonte de sistema nao encontrada. Ajuste pick_font para uma fonte instalada.')
+    raise RuntimeError('Fonte de sistema nao encontrada; ajuste pick_font.')
+
 
 font_reg = pick_font(('DejaVuSans.ttf', 'Arial.ttf', 'arial.ttf', 'Helvetica.ttc'))
 font_bold = pick_font(('DejaVuSans-Bold.ttf', 'Arialbd.ttf', 'arialbd.ttf', 'Helvetica.ttc'))
@@ -113,82 +115,93 @@ NAME = F(font_bold, 70)
 LABEL = F(font_mono_b, 17)
 SUB = F(font_reg, 24)
 SMALL = F(font_mono, 16)
-CARD = F(font_mono_b, 17)
-GREEN_RGB = (118,197,162)
+STEP_NUMBER = F(font_mono_b, 17)
+STEP_LABEL = F(font_mono, 16)
+STEP_META = F(font_mono, 14)
+GREEN_RGB = (118, 197, 162)
+BG_RGB = (8, 11, 16)
 
-
-# Monogram extracted from the exact original PNG supplied by the author.
-# No vectorization/redrawing; the original horizontal lockup remains byte-identical.
+# The source PNG is copied verbatim to /brand. Cropping whitespace and resizing
+# for the header does not alter the actual brand file or redraw its symbol.
 ORIGINAL_LOGO = ASSETS / 'brand' / 'rafael-analyst-oficial.png'
 if not ORIGINAL_LOGO.is_file():
     raise FileNotFoundError(f'Logomarca oficial ausente: {ORIGINAL_LOGO}')
-_official = Image.open(ORIGINAL_LOGO).convert('RGB')
-_mark_region = _official.crop((0, 0, min(309, _official.width), _official.height))
-# Preserve white/antialiased strokes and mask only the dark background.
-_mask = _mark_region.convert('L').point(lambda v: 255 if v >= 80 else 0)
-_bbox = _mask.getbbox()
+_logo = Image.open(ORIGINAL_LOGO).convert('RGB')
+_bright = _logo.convert('L').point(lambda value: 255 if value >= 90 else 0)
+_bbox = _bright.getbbox()
 if not _bbox:
-    raise RuntimeError('Nao foi possivel localizar o monograma oficial')
-_mark_region = _mark_region.crop(_bbox)
-_scale = min(72 / _mark_region.width, 44 / _mark_region.height)
-MONOGRAM = _mark_region.resize(
-    (round(_mark_region.width * _scale), round(_mark_region.height * _scale)),
+    raise RuntimeError('Nao foi possivel localizar a marca oficial')
+_logo_crop = _logo.crop(_bbox)
+_logo_width = 315
+OFFICIAL_LOCKUP = _logo_crop.resize(
+    (_logo_width, round(_logo_crop.height * _logo_width / _logo_crop.width)),
     Image.Resampling.LANCZOS,
 )
 
-# Draw shapes at native size with 16-color palette to keep animation compact.
-frames = []
-for frame in range(FPS):
-    im = Image.new('RGB', (W,H), (8,11,15))
-    d = ImageDraw.Draw(im)
-    d.rounded_rectangle((3,3,W-4,H-4),radius=19,outline=(48,60,71),width=2)
-    d.rectangle((0,0,W,5),fill=(118,197,162))
-    # Subtle technical dotted canvas on the right, quiet around type.
-    for gy in range(68,385,30):
-        for gx in range(655,1150,30):
-            d.ellipse((gx,gy,gx+2,gy+2), fill=(22,32,37))
-    im.paste(MONOGRAM, (38, 13 + (44 - MONOGRAM.height)//2))
-    d.text((128,26), '/   ENGINEERING NOTEBOOK',font=LABEL,fill=(118,197,162))
-    d.text((1160,27), '2026  /  PROFILE',font=SMALL,fill=(125,139,151),anchor='ra')
-    d.line((38,64,1161,64),fill=(40,50,60),width=2)
-    d.text((38,111), 'Rafael',font=NAME,fill=(238,242,241))
-    d.text((38,191), 'Eduardo',font=NAME,fill=(238,242,241))
-    d.text((40,289), 'DESENVOLVEDOR DE SOLUÇÕES E AUTOMAÇÃO',font=LABEL,fill=GREEN_RGB)
-    d.text((41,328), 'Sistemas web  /  Dados  /  Integrações',font=SUB,fill=(145,160,171))
-    d.line((38,379,1160,379),fill=(40,50,60),width=2)
-    d.text((41,396), 'RAFAELANALYST.COM.BR',font=SMALL,fill=(119,132,143))
-    d.text((1160,396), 'PROJETAR • VALIDAR • OPERAR',font=SMALL,fill=(119,132,143),anchor='ra')
-    # Schematic panel on the right.
-    d.rounded_rectangle((687,110,1160,336),radius=13,fill=(13,19,24),outline=(46,59,67),width=2)
-    d.text((713,132),'WORKFLOW  /  REFERENCE',font=SMALL,fill=(128,148,161))
-    xys = [(735,237),(895,204),(1086,237)]
-    lab = ['VALIDATE','EXECUTE','OBSERVE']
-    status = ['INPUT','RULES','AUDIT']
-    for i,((x,y),l,st) in enumerate(zip(xys,lab,status)):
-        rr=35
-        d.ellipse((x-rr,y-rr,x+rr,y+rr),fill=(19,31,32),outline=(65,93,90),width=3)
-        d.text((x,y-9),f'0{i+1}',font=CARD,fill=(214,231,220),anchor='mm')
-        d.text((x,y+58),l,font=SMALL,fill=(185,198,205),anchor='mm')
-        d.text((x,316),st,font=SMALL,fill=(107,133,145),anchor='mm')
-    d.line((770,231,858,209),fill=(46,71,68),width=5)
-    d.line((932,210,1048,233),fill=(46,71,68),width=5)
-    # A time-dependent packet flowing through two links.
-    phase = (frame / FPS) * 2
-    seg = int(phase) % 2
-    t = phase % 1
-    a,b = ((770,231),(858,209)) if seg == 0 else ((932,210),(1048,233))
-    xx=a[0]+(b[0]-a[0])*t
-    yy=a[1]+(b[1]-a[1])*t
-    d.ellipse((xx-7,yy-7,xx+7,yy+7),fill=(211,244,224))
-    d.ellipse((xx-13,yy-13,xx+13,yy+13),outline=(100,176,143),width=2)
-    # Progress strip.
-    d.rounded_rectangle((713,171,1135,177),radius=3,fill=(38,51,52))
-    d.rounded_rectangle((713,171,713+int(422*(frame+1)/FPS),177),radius=3,fill=GREEN_RGB)
-    frame_brightness = 190 + int(50*abs(math.sin(frame/FPS*math.pi*2)))
-    d.ellipse((1123,132,1136,145),fill=(80,frame_brightness,135))
-    # Palette conversion keeps upload small while preserving crisp edges.
-    frames.append(im.quantize(colors=54,method=Image.Quantize.FASTOCTREE))
 
-frames[0].save(ASSETS/'hero.gif',save_all=True,append_images=frames[1:],duration=90,loop=0,optimize=True,disposal=2)
-frames[0].convert('RGB').save(ASSETS/'hero-still.png',optimize=True)
-print('Generated:', len(PROJECTS),'cards, architecture.svg, hero.gif, hero-still.png')
+def draw_hero(frame: int) -> Image.Image:
+    im = Image.new('RGB', (W, H), BG_RGB)
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((3, 3, W - 4, H - 4), radius=19, outline=(48, 60, 71), width=2)
+    d.rectangle((0, 0, W, 3), fill=(94, 149, 128))
+    for y in range(72, 380, 30):
+        for x in range(655, 1170, 30):
+            d.ellipse((x, y, x+2, y+2), fill=(22, 32, 37))
+
+    # Official lockup embedded as one proportionate brand element.
+    im.paste(OFFICIAL_LOCKUP, (40, 17))
+    d.text((1160, 29), 'PORTFOLIO   /   2026', font=SMALL, fill=(125, 139, 151), anchor='ra')
+    d.line((38, 79, 1161, 79), fill=(40, 50, 60), width=2)
+
+    # Main title is unchanged from the earlier approved layout.
+    d.text((38, 120), 'Rafael', font=NAME, fill=(238, 242, 241))
+    d.text((38, 201), 'Eduardo', font=NAME, fill=(238, 242, 241))
+    d.text((40, 294), 'DESENVOLVEDOR DE SOLUÇÕES E AUTOMAÇÃO', font=LABEL, fill=GREEN_RGB)
+    d.text((41, 334), 'Sistemas web  /  Dados  /  Integrações', font=SUB, fill=(145, 160, 171))
+    d.line((38, 379, 1160, 379), fill=(40, 50, 60), width=2)
+    d.text((41, 396), 'RAFAELANALYST.COM.BR', font=SMALL, fill=(119, 132, 143))
+    d.text((1160, 396), 'REGRAS  /  TESTES  /  MANUTENÇÃO', font=SMALL, fill=(119, 132, 143), anchor='ra')
+
+    # Symmetric execution model: equal spacing, one shared baseline, fixed padding.
+    left, top, right, bottom = 682, 113, 1160, 334
+    d.rounded_rectangle((left, top, right, bottom), radius=14,
+                        fill=(13, 19, 24), outline=(46, 59, 67), width=2)
+    d.text((711, 135), 'MODELO  /  EXECUÇÃO', font=SMALL, fill=(128, 148, 161))
+    d.ellipse((1126, 134, 1137, 145), fill=(105, 172, 140))
+    d.rounded_rectangle((712, 174, 1132, 180), radius=3, fill=(36, 48, 52))
+    progress = int(420 * ((frame + 1) / FRAME_COUNT))
+    d.rounded_rectangle((712, 174, 712 + max(5, progress), 180), radius=3, fill=(96, 164, 136))
+
+    xs = (763, 921, 1079)
+    cy = 228
+    r = 31
+    # Straight connectors first, then nodes. Nothing overlaps the labels.
+    for first, second in zip(xs, xs[1:]):
+        d.line((first+r, cy, second-r, cy), fill=(53, 79, 76), width=3)
+
+    labels = ('VALIDAR', 'EXECUTAR', 'AUDITAR')
+    subtitles = ('ENTRADA', 'REGRAS', 'EVIDÊNCIA')
+    active = min(2, (frame * 3) // FRAME_COUNT)
+    for idx, x in enumerate(xs):
+        selected = idx == active
+        border = (103, 170, 143) if selected else (66, 94, 91)
+        d.ellipse((x-r, cy-r, x+r, cy+r), fill=(19, 31, 32), outline=border, width=3)
+        # Subtle animated focus ring: no bright, free-floating white circle.
+        if selected:
+            d.arc((x-r-5, cy-r-5, x+r+5, cy+r+5), start=208, end=333,
+                  fill=(132, 204, 172), width=2)
+        d.text((x, cy-1), f'0{idx+1}', font=STEP_NUMBER,
+               fill=(215, 232, 221), anchor='mm')
+        d.text((x, 282), labels[idx], font=STEP_LABEL,
+               fill=(188, 204, 205), anchor='mm')
+        d.text((x, 306), subtitles[idx], font=STEP_META,
+               fill=(111, 143, 149), anchor='mm')
+    return im
+
+
+frames = [draw_hero(frame).quantize(colors=64, method=Image.Quantize.FASTOCTREE)
+          for frame in range(FRAME_COUNT)]
+frames[0].save(ASSETS/'hero.gif', save_all=True, append_images=frames[1:],
+               duration=90, loop=0, optimize=True, disposal=2)
+draw_hero(0).save(ASSETS/'hero-still.png', optimize=True)
+print('Generated:', len(PROJECTS), 'cards, architecture.svg, hero.gif, hero-still.png')

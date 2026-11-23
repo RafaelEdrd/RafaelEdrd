@@ -42,6 +42,15 @@ def inspect(require_logo: bool) -> list[str]:
         if not (ASSETS / 'cards' / f'{slug}.svg').is_file():
             errors.append(f'Card ausente: {slug}')
 
+    if '<img src="./assets/profile/brand/rafael-analyst-oficial.png"' in content:
+        errors.append('Marca duplicada fora do hero; nao incluir banner de 520 px')
+    navigation = ('site', 'linkedin', 'contato', 'sobre', 'engenharia', 'projetos', 'tecnologias', 'bastidores')
+    for slug in navigation:
+        if f'./assets/profile/navigation/{slug}.svg' not in content:
+            errors.append(f'Navegacao visual ausente no README: {slug}')
+        if not (ASSETS / 'navigation' / f'{slug}.svg').is_file():
+            errors.append(f'Asset da navegacao ausente: {slug}')
+
     if 'https://github.com/RafaelEdrd/conversa-studio' in content:
         errors.append('Conversa Studio continua sem verificacao publica: remova o link ate validar')
 

@@ -41,3 +41,8 @@ O script `publish.ps1` não executa `git add .`, não usa `push --force` e recus
 - README do perfil é público, mesmo quando há conteúdo em outras áreas privadas da conta.
 - Somente oito repositórios públicos foram verificados no momento desta versão. `conversa-studio` retornou 404 na verificação externa e deve ser acrescentado somente após confirmação de acesso público.
 - O GIF é decorativo. Toda informação essencial também aparece em texto acessível no Markdown.
+
+
+## Ajuste pontual de cabecalho
+
+Marca original preservada por SHA-256, posicionada dentro do hero. Navegacao usa SVGs estaticos clicaveis; sem JavaScript no README. O painel foi alinhado por uma grade simetrica (x=763, 921, 1079; y=228), e a animacao elimina o indicador circular branco para evitar sobreposicoes.
