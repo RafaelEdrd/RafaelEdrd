@@ -1,236 +1,194 @@
-"""Build the static profile illustrations.
+"""Generate the versioned, original visual assets used in the profile README.
 
-All assets are local, deterministic and self-hosted. This command intentionally does
-not regenerate the approved animated hero; see docs/profile-design.md.
-
-Usage:
-    python scripts/generate_visuals.py
+No network calls. Dependencies: Pillow (only needed to regenerate the GIF).
+The user's official brand mark is included separately in assets/profile/brand.
 """
 from __future__ import annotations
 
 from pathlib import Path
 from xml.sax.saxutils import escape
+import math
+import os
+
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / "assets" / "profile"
+ASSETS = ROOT / 'assets' / 'profile'
+CARDS = ASSETS / 'cards'
+CARDS.mkdir(parents=True, exist_ok=True)
 
-# Match the APPROVED hero palette. Do not modify the user's brand PNG.
-BG = "#080B0F"
-PANEL = "#0C1116"
-PANEL_2 = "#10171D"
-EDGE = "#293440"
-WHITE = "#EDF1F0"
-MUTED = "#8C9BA5"
-FAINT = "#627783"
-GREEN = "#76C5A2"
-SOFT_GREEN = "#3D7060"
-MONO = "'DejaVu Sans Mono',Consolas,monospace"
-SANS = "'DejaVu Sans',Arial,Helvetica,sans-serif"
+BG = '#080B0F'
+PANEL = '#0C1116'
+EDGE = '#293440'
+WHITE = '#EBF0EF'
+MUTED = '#8C9BA5'
+GREEN = '#76C5A2'
+GOLD = '#DAB47B'
+BLUE = '#819BBE'
 
 PROJECTS = [
-    {"n": "01", "slug": "webhook-relay", "title": "WEBHOOK RELAY", "description": "Entrega, validação e retentativas de eventos", "stack": "NODE.JS   /   TYPESCRIPT   /   POSTGRESQL", "kind": "INTEGRAÇÕES"},
-    {"n": "02", "slug": "data-reconciliation", "title": "DATA RECONCILIATION", "description": "Conciliação determinística e divergências", "stack": "PYTHON   /   CSV   /   TESTES", "kind": "DADOS"},
-    {"n": "03", "slug": "process-forge", "title": "PROCESS FORGE", "description": "Pipelines declarativos e validação de DAG", "stack": "NODE.JS   /   PIPELINES   /   TESTES", "kind": "AUTOMAÇÃO"},
-    {"n": "04", "slug": "approval-workflow", "title": "APPROVAL WORKFLOW", "description": "Estados, aprovações e rastreabilidade", "stack": "PYTHON   /   FASTAPI   /   SQL", "kind": "PROCESSOS"},
-    {"n": "05", "slug": "dispatch-planner", "title": "DISPATCH PLANNER", "description": "Agenda com competências e restrições", "stack": "PYTHON   /   SCHEDULING   /   TESTES", "kind": "OPERAÇÃO"},
-    {"n": "06", "slug": "commerce-control", "title": "COMMERCE CONTROL", "description": "Reserva, idempotência e conciliação", "stack": "PYTHON   /   ESTOQUE   /   AUDITORIA", "kind": "CONSISTÊNCIA"},
-    {"n": "07", "slug": "operations-dashboard", "title": "OPERATIONS DASHBOARD", "description": "Indicadores com contexto operacional", "stack": "REACT   /   FASTAPI   /   SQLITE", "kind": "ANÁLISE"},
-    {"n": "08", "slug": "content-manager", "title": "CONTENT MANAGER", "description": "Revisão e publicação editorial", "stack": "PHP   /   MYSQL   /   CI", "kind": "SISTEMAS"},
-]
-
-SECTIONS = [
-    ("01", "SOBRE", "TRAJETÓRIA  /  CONTEXTO", "sobre"),
-    ("02", "ENGENHARIA", "REGRAS  /  IMPLEMENTAÇÃO", "engenharia"),
-    ("03", "PROJETOS", "CÓDIGO  /  DOCUMENTAÇÃO", "projetos"),
-    ("04", "TECNOLOGIAS", "FERRAMENTAS  /  APLICAÇÃO", "tecnologias"),
-    ("05", "BASTIDORES", "DECISÕES  /  TRADE-OFFS", "bastidores"),
+    ('01', 'webhook-relay', 'WEBHOOK RELAY', 'Entrega controlada de eventos e retentativas', 'NODE.JS  /  TYPESCRIPT  /  POSTGRESQL', GREEN),
+    ('02', 'content-manager', 'CONTENT MANAGER', 'Fluxos editoriais, revisão e publicação', 'PHP  /  MYSQL  /  CI', BLUE),
+    ('03', 'data-reconciliation', 'DATA RECONCILIATION', 'Conciliação determinística e divergências', 'PYTHON  /  CSV  /  TESTES', GOLD),
+    ('04', 'approval-workflow', 'APPROVAL WORKFLOW', 'Estados, aprovações e rastreabilidade', 'PYTHON  /  FASTAPI  /  SQL', GREEN),
+    ('05', 'operations-dashboard', 'OPERATIONS DASHBOARD', 'Visão operacional com indicadores acionáveis', 'REACT  /  FASTAPI  /  SQLITE', BLUE),
+    ('06', 'process-forge', 'PROCESS FORGE', 'Pipelines declarativos e validação de DAG', 'NODE.JS  /  PIPELINE  /  TESTES', GOLD),
+    ('07', 'dispatch-planner', 'DISPATCH PLANNER', 'Planejamento com competências e restrições', 'PYTHON  /  SCHEDULING  /  TESTES', GREEN),
+    ('08', 'commerce-control', 'COMMERCE CONTROL', 'Reserva de estoque, idempotência e conciliação', 'PYTHON  /  INVENTORY  /  AUDIT', BLUE),
 ]
 
 
-def write_svg(path: Path, source: str) -> None:
+def write(path: Path, content: str):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(source.strip() + "\n", encoding="utf-8")
+    path.write_text(content, encoding='utf-8')
 
 
-def shell(w: int, h: int, radius: int = 14) -> str:
-    return (
-        f'<rect width="{w}" height="{h}" rx="{radius}" fill="{BG}"/>'
-        f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="{radius-1}" fill="none" stroke="{EDGE}" stroke-width="2"/>'
+def make_card(index, slug, title, subtitle, stack, accent):
+    # Text fits both desktop 2-column and narrow screen 1-column layouts.
+    lines = []
+    for offset, opacity in [(0, 0.80), (22, 0.42), (44, 0.20)]:
+        lines.append(f'<path d="M670 {65 + offset} L760 {65 + offset} L813 {111 + offset} L931 {111 + offset}" stroke="{accent}" stroke-width="2" stroke-opacity="{opacity}" fill="none"/>')
+    nodes = ''.join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{accent}" opacity="{o}"/>'
+                    for x,y,r,o in [(672,65,5,0.8),(760,65,5,0.75),(813,111,6,0.65),(931,111,5,0.9),(931,154,3,0.4)])
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 280" width="980" height="280" role="img" aria-label="{escape(title)}">
+      <rect width="980" height="280" rx="20" fill="{BG}"/>
+      <rect x="1" y="1" width="978" height="278" rx="19" fill="none" stroke="{EDGE}" stroke-width="2"/>
+      <path d="M0 0H980" stroke="{accent}" stroke-width="5" opacity=".85"/>
+      <path d="M34 204 H946" stroke="{EDGE}" stroke-width="1"/>
+      <text x="35" y="39" font-family="ui-monospace,Consolas,monospace" font-size="19" letter-spacing="3" fill="{accent}">RA / LAB  {index}</text>
+      <text x="35" y="111" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="700" fill="{WHITE}">{escape(title)}</text>
+      <text x="36" y="157" font-family="Arial,Helvetica,sans-serif" font-size="23" fill="{MUTED}">{escape(subtitle)}</text>
+      <text x="36" y="241" font-family="ui-monospace,Consolas,monospace" font-size="19" fill="{accent}" letter-spacing="1.2">{escape(stack)}</text>
+      <text x="935" y="239" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="18" fill="{MUTED}">VIEW CODE ></text>
+      {''.join(lines)}{nodes}
+    </svg>'''
+    write(CARDS / f'{slug}.svg', svg)
+
+
+for item in PROJECTS:
+    make_card(*item)
+
+architecture = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="328" viewBox="0 0 1200 328" role="img" aria-label="Pipeline de engenharia: diagnosticar, modelar, implementar e observar">
+ <rect width="1200" height="328" rx="18" fill="{BG}" />
+ <rect x="1" y="1" width="1198" height="326" rx="17" fill="none" stroke="{EDGE}" stroke-width="2"/>
+ <text x="39" y="41" font-family="ui-monospace,Consolas,monospace" font-size="19" letter-spacing="3" fill="{GREEN}">OPERATING MODEL / 04 ESTÁGIOS</text>
+ <text x="1160" y="41" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="17" fill="{MUTED}">DESIGN / DELIVERY</text>
+ {''.join(f'''<g>
+   <rect x="{35 + i*292}" y="75" width="264" height="163" rx="12" fill="{PANEL}" stroke="{EDGE}"/>
+   <text x="{57+i*292}" y="108" font-family="ui-monospace,Consolas,monospace" font-size="17" letter-spacing="2" fill="{[GREEN,BLUE,GOLD,GREEN][i]}">0{i+1} / {['DISCOVER','MODEL','BUILD','OBSERVE'][i]}</text>
+   <text x="{57+i*292}" y="161" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="bold" fill="{WHITE}">{['Contexto','Regras','Entrega','Evidências'][i]}</text>
+   <text x="{57+i*292}" y="197" font-family="Arial,Helvetica,sans-serif" font-size="19" fill="{MUTED}">{['Entender a operação','Definir invariantes','Implementar com testes','Logs e manutenção'][i]}</text>
+   </g>''' for i in range(4))}
+ <path d="M299 155 H327 M591 155 H619 M883 155 H911" stroke="{GREEN}" stroke-width="4" stroke-linecap="round"/>
+ <path d="M317 148 l12 7 -12 7 M609 148 l12 7 -12 7 M901 148 l12 7 -12 7" stroke="{GREEN}" stroke-width="3" fill="none"/>
+ <text x="38" y="283" font-family="ui-monospace,Consolas,monospace" font-size="18" letter-spacing="1" fill="{MUTED}">ENTRADA LEGÍVEL    /    DECISÃO EXPLÍCITA    /    MUDANÇA CONTROLADA    /    RESULTADO AUDITÁVEL</text>
+ </svg>'''
+write(ASSETS/'architecture.svg', architecture)
+
+# GIF animation is used intentionally: it is image-only, self-hosted, no JavaScript
+# execution and does not depend on third-party stat/image services.
+W, H = 1200, 430
+FPS = 58
+def pick_font(variants: tuple[str, ...]) -> str:
+    # Keep regeneration possible on Linux, Windows and macOS without bundling font files.
+    search_roots = (
+        Path('/usr/share/fonts/truetype/dejavu'),
+        Path('/usr/share/fonts/truetype/liberation2'),
+        Path(os.getenv('WINDIR', 'C:/Windows')) / 'Fonts',
+        Path('/System/Library/Fonts'),
     )
+    for root in search_roots:
+        for name in variants:
+            candidate = root / name
+            if candidate.is_file():
+                return str(candidate)
+    raise RuntimeError('Fonte de sistema nao encontrada. Ajuste pick_font para uma fonte instalada.')
+
+font_reg = pick_font(('DejaVuSans.ttf', 'Arial.ttf', 'arial.ttf', 'Helvetica.ttc'))
+font_bold = pick_font(('DejaVuSans-Bold.ttf', 'Arialbd.ttf', 'arialbd.ttf', 'Helvetica.ttc'))
+font_mono = pick_font(('DejaVuSansMono.ttf', 'consola.ttf', 'Menlo.ttc'))
+font_mono_b = pick_font(('DejaVuSansMono-Bold.ttf', 'consolab.ttf', 'Menlo.ttc'))
+F = lambda path, size: ImageFont.truetype(path, size)
+NAME = F(font_bold, 70)
+LABEL = F(font_mono_b, 17)
+SUB = F(font_reg, 24)
+SMALL = F(font_mono, 16)
+CARD = F(font_mono_b, 17)
+GREEN_RGB = (118,197,162)
 
 
-def label(x: int, y: int, content: str, *, size: int=16, color: str=MUTED, weight: int=400, family: str=MONO, anchor: str="start", spacing: float=0) -> str:
-    return f'<text x="{x}" y="{y}" font-family="{family}" font-size="{size}" font-weight="{weight}" fill="{color}" text-anchor="{anchor}" letter-spacing="{spacing}">{escape(content)}</text>'
+# Monogram extracted from the exact original PNG supplied by the author.
+# No vectorization/redrawing; the original horizontal lockup remains byte-identical.
+ORIGINAL_LOGO = ASSETS / 'brand' / 'rafael-analyst-oficial.png'
+if not ORIGINAL_LOGO.is_file():
+    raise FileNotFoundError(f'Logomarca oficial ausente: {ORIGINAL_LOGO}')
+_official = Image.open(ORIGINAL_LOGO).convert('RGB')
+_mark_region = _official.crop((0, 0, min(309, _official.width), _official.height))
+# Preserve white/antialiased strokes and mask only the dark background.
+_mask = _mark_region.convert('L').point(lambda v: 255 if v >= 80 else 0)
+_bbox = _mask.getbbox()
+if not _bbox:
+    raise RuntimeError('Nao foi possivel localizar o monograma oficial')
+_mark_region = _mark_region.crop(_bbox)
+_scale = min(72 / _mark_region.width, 44 / _mark_region.height)
+MONOGRAM = _mark_region.resize(
+    (round(_mark_region.width * _scale), round(_mark_region.height * _scale)),
+    Image.Resampling.LANCZOS,
+)
 
+# Draw shapes at native size with 16-color palette to keep animation compact.
+frames = []
+for frame in range(FPS):
+    im = Image.new('RGB', (W,H), (8,11,15))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((3,3,W-4,H-4),radius=19,outline=(48,60,71),width=2)
+    d.rectangle((0,0,W,5),fill=(118,197,162))
+    # Subtle technical dotted canvas on the right, quiet around type.
+    for gy in range(68,385,30):
+        for gx in range(655,1150,30):
+            d.ellipse((gx,gy,gx+2,gy+2), fill=(22,32,37))
+    im.paste(MONOGRAM, (38, 13 + (44 - MONOGRAM.height)//2))
+    d.text((128,26), '/   ENGINEERING NOTEBOOK',font=LABEL,fill=(118,197,162))
+    d.text((1160,27), '2026  /  PROFILE',font=SMALL,fill=(125,139,151),anchor='ra')
+    d.line((38,64,1161,64),fill=(40,50,60),width=2)
+    d.text((38,111), 'Rafael',font=NAME,fill=(238,242,241))
+    d.text((38,191), 'Eduardo',font=NAME,fill=(238,242,241))
+    d.text((40,289), 'DESENVOLVEDOR DE SOLUÇÕES E AUTOMAÇÃO',font=LABEL,fill=GREEN_RGB)
+    d.text((41,328), 'Sistemas web  /  Dados  /  Integrações',font=SUB,fill=(145,160,171))
+    d.line((38,379,1160,379),fill=(40,50,60),width=2)
+    d.text((41,396), 'RAFAELANALYST.COM.BR',font=SMALL,fill=(119,132,143))
+    d.text((1160,396), 'PROJETAR • VALIDAR • OPERAR',font=SMALL,fill=(119,132,143),anchor='ra')
+    # Schematic panel on the right.
+    d.rounded_rectangle((687,110,1160,336),radius=13,fill=(13,19,24),outline=(46,59,67),width=2)
+    d.text((713,132),'WORKFLOW  /  REFERENCE',font=SMALL,fill=(128,148,161))
+    xys = [(735,237),(895,204),(1086,237)]
+    lab = ['VALIDATE','EXECUTE','OBSERVE']
+    status = ['INPUT','RULES','AUDIT']
+    for i,((x,y),l,st) in enumerate(zip(xys,lab,status)):
+        rr=35
+        d.ellipse((x-rr,y-rr,x+rr,y+rr),fill=(19,31,32),outline=(65,93,90),width=3)
+        d.text((x,y-9),f'0{i+1}',font=CARD,fill=(214,231,220),anchor='mm')
+        d.text((x,y+58),l,font=SMALL,fill=(185,198,205),anchor='mm')
+        d.text((x,316),st,font=SMALL,fill=(107,133,145),anchor='mm')
+    d.line((770,231,858,209),fill=(46,71,68),width=5)
+    d.line((932,210,1048,233),fill=(46,71,68),width=5)
+    # A time-dependent packet flowing through two links.
+    phase = (frame / FPS) * 2
+    seg = int(phase) % 2
+    t = phase % 1
+    a,b = ((770,231),(858,209)) if seg == 0 else ((932,210),(1048,233))
+    xx=a[0]+(b[0]-a[0])*t
+    yy=a[1]+(b[1]-a[1])*t
+    d.ellipse((xx-7,yy-7,xx+7,yy+7),fill=(211,244,224))
+    d.ellipse((xx-13,yy-13,xx+13,yy+13),outline=(100,176,143),width=2)
+    # Progress strip.
+    d.rounded_rectangle((713,171,1135,177),radius=3,fill=(38,51,52))
+    d.rounded_rectangle((713,171,713+int(422*(frame+1)/FPS),177),radius=3,fill=GREEN_RGB)
+    frame_brightness = 190 + int(50*abs(math.sin(frame/FPS*math.pi*2)))
+    d.ellipse((1123,132,1136,145),fill=(80,frame_brightness,135))
+    # Palette conversion keeps upload small while preserving crisp edges.
+    frames.append(im.quantize(colors=54,method=Image.Quantize.FASTOCTREE))
 
-def section(n: str, title: str, metadata: str, slug: str) -> None:
-    w, h = 1200, 106
-    body = (
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="{escape(n+" / "+title)}">'
-        f'<rect width="{w}" height="{h}" fill="{BG}"/>'
-        f'<path d="M0 2H1200" stroke="{EDGE}" stroke-width="2"/>'
-        f'<path d="M0 2H98" stroke="{GREEN}" stroke-width="4"/>'
-        f'<rect x="2" y="27" width="68" height="53" rx="9" fill="{PANEL_2}" stroke="{EDGE}"/>'
-        + label(36, 63, n, size=27, color=GREEN, weight=700, anchor="middle")
-        + label(91, 66, title, size=37, color=WHITE, weight=700, family=SANS)
-        + label(1182, 63, metadata, size=16, color=FAINT, anchor="end", spacing=1)
-        + f'<path d="M0 104H1200" stroke="{EDGE}" stroke-width="1"/>'
-        + '</svg>'
-    )
-    write_svg(BASE / "sections" / f"{slug}.svg", body)
-
-
-def focus() -> None:
-    w, h = 1200, 247
-    names = [
-        ("SISTEMAS WEB", "Regras, interfaces, APIs", "01"),
-        ("AUTOMAÇÃO", "Integrações e rotinas", "02"),
-        ("DADOS", "Conciliação e indicadores", "03"),
-    ]
-    elements = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="Atuação em sistemas web, automação e dados">', shell(w,h),
-                label(32, 38, "CAMPOS DE ATUAÇÃO", size=16,color=GREEN,spacing=1.4),
-                label(1167,38, "UMA OPERAÇÃO   /   TRÊS FRENTES",size=15,color=FAINT,anchor="end"),
-                f'<path d="M30 57H1170" stroke="{EDGE}"/>']
-    for i,(name, desc, n) in enumerate(names):
-        x = 32 + i*392
-        elements += [
-            f'<rect x="{x}" y="75" width="366" height="138" rx="11" fill="{PANEL}" stroke="{EDGE}"/>',
-            label(x+18,105,n,size=15,color=GREEN),
-            label(x+18,151,name,size=28,color=WHITE,weight=700,family=SANS),
-            label(x+18,188,desc,size=19,color=MUTED,family=SANS),
-            f'<path d="M{x+331} 95 h14 v14" fill="none" stroke="{SOFT_GREEN}" stroke-width="2"/>',
-        ]
-    elements.append('</svg>')
-    write_svg(BASE / "focus.svg", ''.join(elements))
-
-
-def architecture() -> None:
-    w,h=1200,338
-    blocks = [
-        ("01", "DIAGNÓSTICO", "Contexto", "Entradas e exceções"),
-        ("02", "CONTRATO", "Regras", "Invariantes e limites"),
-        ("03", "IMPLEMENTAÇÃO", "Código", "Testes e integração"),
-        ("04", "OPERAÇÃO", "Evidência", "Logs e manutenção"),
-    ]
-    el = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="Fluxo de engenharia: diagnóstico, contrato, implementação e operação">',
-        shell(w,h),
-        label(32,42,"MODELO DE EXECUÇÃO",size=16,color=GREEN,spacing=1.2),
-        label(1167,42,"DO PROBLEMA AO MONITORAMENTO",size=15,color=FAINT,anchor="end"),
-        f'<path d="M30 60H1170" stroke="{EDGE}"/>']
-    for i,(n,tag,big,desc) in enumerate(blocks):
-        x=30+i*293
-        el += [
-            f'<rect x="{x}" y="85" width="268" height="177" rx="12" fill="{PANEL}" stroke="{EDGE}" stroke-width="2"/>',
-            label(x+19,119,f"{n}  /  {tag}",size=14,color=GREEN),
-            label(x+18,179,big,size=36,color=WHITE,weight=700,family=SANS),
-            label(x+19,220,desc,size=17,color=MUTED,family=SANS),
-            f'<path d="M{x+19} 241h{212 if i<3 else 160}" stroke="{SOFT_GREEN}" stroke-width="3"/>',
-            f'<circle cx="{x+243}" cy="241" r="4" fill="{GREEN}"/>'
-        ]
-        if i<3:
-            el += [f'<path d="M{x+268} 173h25" stroke="{GREEN}" stroke-width="3"/>',
-                   f'<path d="M{x+285} 165l8 8 -8 8" stroke="{GREEN}" stroke-width="3" fill="none"/>']
-    el.extend([f'<path d="M30 291H1170" stroke="{EDGE}"/>',
-        label(32,315,"VALIDAR ANTES DE ALTERAR   /   TESTAR ANTES DE ENTREGAR   /   MEDIR DEPOIS DE PUBLICAR",size=17,color=MUTED),
-        '</svg>'])
-    write_svg(BASE / 'architecture.svg', ''.join(el))
-
-
-def motif(slug: str) -> str:
-    """A small schematic for each project, describing its actual domain.
-
-    Coordinates are relative to the card's right-side panel at x=712 y=52.
-    """
-    stroke=f'stroke="{SOFT_GREEN}" stroke-width="3" fill="none"'
-    br=f'fill="{PANEL_2}" stroke="{SOFT_GREEN}" stroke-width="2"'
-    dot=f'fill="{GREEN}"'
-    if slug=='webhook-relay':
-        return f'''<path d="M741 97H800M825 97H878M900 97H932" {stroke}/>
-        <circle cx="733" cy="97" r="14" {br}/><rect x="801" y="83" width="27" height="28" rx="5" {br}/>
-        <circle cx="889" cy="97" r="14" {br}/><circle cx="940" cy="97" r="8" {dot}/>
-        <path d="M835 122h67v17h-67" {stroke}/><path d="M839 130l-7 -8 7 -8" {stroke}/>
-        {label(841,161,"RETRY",size=14,color=MUTED,anchor='middle')}'''
-    if slug=='data-reconciliation':
-        return f'''<rect x="723" y="63" width="80" height="110" rx="6" {br}/><rect x="853" y="63" width="80" height="110" rx="6" {br}/>
-        {''.join(f'<path d="M735 {78+i*20}h52M865 {78+i*20}h52" stroke="{SOFT_GREEN}" stroke-opacity="{0.38 if i!=2 else 1}" stroke-width="4"/>' for i in range(4))}
-        <path d="M804 102h48M827 94l8 8-8 8" {stroke}/>
-        <circle cx="827" cy="139" r="7" {dot}/>'''
-    if slug=='process-forge':
-        return f'''<path d="M754 113L833 73M754 113L833 154M850 73L932 113M850 154L932 113" {stroke}/>
-        <circle cx="747" cy="113" r="15" {br}/><circle cx="841" cy="73" r="15" {br}/><circle cx="841" cy="154" r="15" {br}/><circle cx="940" cy="113" r="15" {br}/>
-        <circle cx="747" cy="113" r="4" {dot}/><circle cx="940" cy="113" r="4" {dot}/>'''
-    if slug=='approval-workflow':
-        return f'''<path d="M731 116H941" {stroke}/><circle cx="742" cy="116" r="17" {br}/>
-        <circle cx="837" cy="116" r="17" {br}/><circle cx="930" cy="116" r="17" {br}/>
-        <path d="M734 116l5 5 9-11 M827 116l7 7 12-15" stroke="{GREEN}" stroke-width="3" fill="none"/>
-        {label(742,158,"ABERTO",size=11,color=MUTED,anchor='middle')}
-        {label(837,158,"REVISÃO",size=11,color=MUTED,anchor='middle')}
-        {label(931,158,"FINAL",size=11,color=MUTED,anchor='middle')}'''
-    if slug=='dispatch-planner':
-        cells=[]
-        for r in range(3):
-            for c in range(5):
-                active = ((r,c) in ((0,0),(0,1),(1,2),(1,3),(2,1),(2,4)))
-                cells.append(f'<rect x="{725+c*47}" y="{61+r*34}" width="39" height="27" rx="4" fill="{SOFT_GREEN if active else PANEL_2}" stroke="{EDGE}"/>')
-        return ''.join(cells) + label(725,178,"CAPACIDADE  /  CONFLITOS",size=13,color=MUTED)
-    if slug=='commerce-control':
-        return f'''<rect x="721" y="84" width="66" height="69" rx="5" {br}/><rect x="802" y="70" width="66" height="83" rx="5" {br}/><rect x="883" y="94" width="66" height="59" rx="5" {br}/>
-        <path d="M734 107h39M734 119h39M815 96h39M815 108h39M896 117h39" stroke="{SOFT_GREEN}" stroke-width="3"/>
-        <path d="M728 162h217" stroke="{GREEN}" stroke-width="2"/>
-        {label(835,182,"MOVIMENTOS",size=14,color=MUTED,anchor='middle')}'''
-    if slug=='operations-dashboard':
-        bars=[43,68,34,81,59,98,72]
-        return ''.join(f'<rect x="{725+i*33}" y="{161-v}" width="20" height="{v}" rx="3" fill="{SOFT_GREEN if i!=5 else GREEN}"/>' for i,v in enumerate(bars)) + f'<path d="M715 165h243" stroke="{EDGE}" stroke-width="3"/>'
-    if slug=='content-manager':
-        return f'''<rect x="725" y="61" width="63" height="99" rx="6" {br}/><rect x="813" y="61" width="63" height="99" rx="6" {br}/>
-        <rect x="900" y="61" width="55" height="99" rx="6" {br}/>
-        <path d="M736 84h39m-39 13h39m-39 13h29M824 84h39m-39 13h39m-39 13h29M911 84h31m-31 13h31" stroke="{SOFT_GREEN}" stroke-width="3"/>
-        <path d="M746 132l10 10 17-21M831 132l10 10 17-21" stroke="{GREEN}" stroke-width="3" fill="none"/>'''
-    raise ValueError(f"Missing project motif: {slug}")
-
-
-def card(project: dict[str,str]) -> None:
-    w,h=980,264
-    slug=project['slug']
-    body=f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="{escape(project['title'])}: {escape(project['description'])}">
-        {shell(w,h,16)}
-        <path d="M0 3h980" stroke="{SOFT_GREEN}" stroke-width="4"/>
-        {label(32,39,project['n']+'  /  '+project['kind'],size=17,color=GREEN,spacing=1.0)}
-        <path d="M32 57h914" stroke="{EDGE}" stroke-width="1"/>
-        <rect x="706" y="61" width="240" height="127" rx="9" fill="{PANEL}" stroke="{EDGE}"/>
-        {motif(slug)}
-        {label(32,125,project['title'],size=41,color=WHITE,weight=700,family=SANS)}
-        {label(33,170,project['description'],size=21,color=MUTED,family=SANS)}
-        <path d="M32 203h914" stroke="{EDGE}"/>
-        {label(33,239,project['stack'],size=17,color=MUTED)}
-        {label(945,239,'EXPLORAR  ↗',size=16,color=GREEN,anchor='end')}
-        </svg>'''
-    write_svg(BASE / 'cards' / f'{slug}.svg', body)
-
-
-def footer() -> None:
-    w,h=1200,105
-    el = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="Projetos explicáveis, decisões rastreáveis, manutenção possível">
-      <rect width="{w}" height="{h}" fill="{BG}"/>
-      <path d="M0 1h1200" stroke="{EDGE}" stroke-width="2"/>
-      <path d="M0 1h140" stroke="{GREEN}" stroke-width="4"/>
-      {label(20,58,'PROJETOS EXPLICÁVEIS.  DECISÕES RASTREÁVEIS.  MANUTENÇÃO POSSÍVEL.',size=24,color=WHITE,weight=700,family=SANS)}
-      {label(1180,90,'RA / 2026',size=15,color=FAINT,anchor='end')}
-      </svg>'''
-    write_svg(BASE/'footer.svg',el)
-
-
-def main() -> None:
-    for props in SECTIONS:
-        section(*props)
-    focus()
-    architecture()
-    for project in PROJECTS:
-        card(project)
-    footer()
-    print('OK: 5 section headers, focus, architecture, 8 project cards, footer.')
-    print('Approved hero.gif, hero-still.png and brand PNG were NOT modified.')
-
-
-if __name__ == '__main__':
-    main()
+frames[0].save(ASSETS/'hero.gif',save_all=True,append_images=frames[1:],duration=90,loop=0,optimize=True,disposal=2)
+frames[0].convert('RGB').save(ASSETS/'hero-still.png',optimize=True)
+print('Generated:', len(PROJECTS),'cards, architecture.svg, hero.gif, hero-still.png')

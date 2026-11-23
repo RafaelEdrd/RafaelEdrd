@@ -1,13 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="980" height="264" viewBox="0 0 980 264" role="img" aria-label="OPERATIONS DASHBOARD: Indicadores com contexto operacional">
-        <rect width="980" height="264" rx="16" fill="#080B0F"/><rect x="1" y="1" width="978" height="262" rx="15" fill="none" stroke="#293440" stroke-width="2"/>
-        <path d="M0 3h980" stroke="#3D7060" stroke-width="4"/>
-        <text x="32" y="39" font-family="'DejaVu Sans Mono',Consolas,monospace" font-size="17" font-weight="400" fill="#76C5A2" text-anchor="start" letter-spacing="1.0">07  /  ANÁLISE</text>
-        <path d="M32 57h914" stroke="#293440" stroke-width="1"/>
-        <rect x="706" y="61" width="240" height="127" rx="9" fill="#0C1116" stroke="#293440"/>
-        <rect x="725" y="118" width="20" height="43" rx="3" fill="#3D7060"/><rect x="758" y="93" width="20" height="68" rx="3" fill="#3D7060"/><rect x="791" y="127" width="20" height="34" rx="3" fill="#3D7060"/><rect x="824" y="80" width="20" height="81" rx="3" fill="#3D7060"/><rect x="857" y="102" width="20" height="59" rx="3" fill="#3D7060"/><rect x="890" y="63" width="20" height="98" rx="3" fill="#76C5A2"/><rect x="923" y="89" width="20" height="72" rx="3" fill="#3D7060"/><path d="M715 165h243" stroke="#293440" stroke-width="3"/>
-        <text x="32" y="125" font-family="'DejaVu Sans',Arial,Helvetica,sans-serif" font-size="41" font-weight="700" fill="#EDF1F0" text-anchor="start" letter-spacing="0">OPERATIONS DASHBOARD</text>
-        <text x="33" y="170" font-family="'DejaVu Sans',Arial,Helvetica,sans-serif" font-size="21" font-weight="400" fill="#8C9BA5" text-anchor="start" letter-spacing="0">Indicadores com contexto operacional</text>
-        <path d="M32 203h914" stroke="#293440"/>
-        <text x="33" y="239" font-family="'DejaVu Sans Mono',Consolas,monospace" font-size="17" font-weight="400" fill="#8C9BA5" text-anchor="start" letter-spacing="0">REACT   /   FASTAPI   /   SQLITE</text>
-        <text x="945" y="239" font-family="'DejaVu Sans Mono',Consolas,monospace" font-size="16" font-weight="400" fill="#76C5A2" text-anchor="end" letter-spacing="0">EXPLORAR  ↗</text>
-        </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 280" width="980" height="280" role="img" aria-label="OPERATIONS DASHBOARD">
+      <rect width="980" height="280" rx="20" fill="#080B0F"/>
+      <rect x="1" y="1" width="978" height="278" rx="19" fill="none" stroke="#293440" stroke-width="2"/>
+      <path d="M0 0H980" stroke="#819BBE" stroke-width="5" opacity=".85"/>
+      <path d="M34 204 H946" stroke="#293440" stroke-width="1"/>
+      <text x="35" y="39" font-family="ui-monospace,Consolas,monospace" font-size="19" letter-spacing="3" fill="#819BBE">RA / LAB  05</text>
+      <text x="35" y="111" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="700" fill="#EBF0EF">OPERATIONS DASHBOARD</text>
+      <text x="36" y="157" font-family="Arial,Helvetica,sans-serif" font-size="23" fill="#8C9BA5">Visão operacional com indicadores acionáveis</text>
+      <text x="36" y="241" font-family="ui-monospace,Consolas,monospace" font-size="19" fill="#819BBE" letter-spacing="1.2">REACT  /  FASTAPI  /  SQLITE</text>
+      <text x="935" y="239" text-anchor="end" font-family="ui-monospace,Consolas,monospace" font-size="18" fill="#8C9BA5">VIEW CODE ></text>
+      <path d="M670 65 L760 65 L813 111 L931 111" stroke="#819BBE" stroke-width="2" stroke-opacity="0.8" fill="none"/><path d="M670 87 L760 87 L813 133 L931 133" stroke="#819BBE" stroke-width="2" stroke-opacity="0.42" fill="none"/><path d="M670 109 L760 109 L813 155 L931 155" stroke="#819BBE" stroke-width="2" stroke-opacity="0.2" fill="none"/><circle cx="672" cy="65" r="5" fill="#819BBE" opacity="0.8"/><circle cx="760" cy="65" r="5" fill="#819BBE" opacity="0.75"/><circle cx="813" cy="111" r="6" fill="#819BBE" opacity="0.65"/><circle cx="931" cy="111" r="5" fill="#819BBE" opacity="0.9"/><circle cx="931" cy="154" r="3" fill="#819BBE" opacity="0.4"/>
+    </svg>

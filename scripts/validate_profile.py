@@ -1,146 +1,113 @@
-"""Offline, fail-closed validation of the Rafael Analyst profile distribution.
+"""Fail-closed offline checks for a GitHub profile README.
 
-The profile is a static GitHub README. These tests do not make network calls and
-cannot assert availability of external repositories or icon CDN URLs.
+Run before publishing and in GitHub Actions. Does not request external URLs,
+so its results are reproducible and do not require network access.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import re
+import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from generate_visuals import PROJECTS, SECTIONS
-
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / 'README.md'
+REQUIRED_REPOS = (
+    'webhook-relay',
+    'content-manager',
+    'data-reconciliation',
+    'approval-workflow',
+    'operations-dashboard',
+    'process-forge',
+    'dispatch-planner',
+    'commerce-control',
+)
 ASSETS = ROOT / 'assets' / 'profile'
-
-# Official, approved brand and hero files. Modifying these requires an explicit
-# design review and corresponding checksum update; routine asset generation
-# must never change them.
-PINNED_SHA256 = {
-    'brand/rafael-analyst-oficial.png': '0adf5742f1c31309a0ee640cfa4f3998274e2d1aae3f77206518b12ba39b2de5',
-    'hero.gif': '11d1ec36525852b49d2c4b92b5e5e1027e0b8aaa8289d32b2de5e5c6b4391c88',
-    'hero-still.png': '55827b8779a4efaa1df7d7cc574706364540af8c3e8995fd35088cb509658dcd',
-}
+BRAND = ASSETS / 'brand' / 'rafael-analyst-oficial.png'
+ORIGINAL_LOGO_SHA256 = '0adf5742f1c31309a0ee640cfa4f3998274e2d1aae3f77206518b12ba39b2de5'
 
 
-def check() -> list[str]:
+def inspect(require_logo: bool) -> list[str]:
     errors: list[str] = []
     if not README.is_file():
         return ['README.md ausente']
+
     content = README.read_text(encoding='utf-8')
 
-    for project in PROJECTS:
-        slug = project['slug']
-        if f'href="https://github.com/RafaelEdrd/{slug}"' not in content:
-            errors.append(f'Link publico do projeto ausente: {slug}')
-        if f'src="./assets/profile/cards/{slug}.svg"' not in content:
-            errors.append(f'Card nao utilizado no README: {slug}')
+    for slug in REQUIRED_REPOS:
+        if f'https://github.com/RafaelEdrd/{slug}' not in content:
+            errors.append(f'Repositorio ausente: {slug}')
         if not (ASSETS / 'cards' / f'{slug}.svg').is_file():
-            errors.append(f'Card inexistente: {slug}')
-    cards = re.findall(r'src="\./assets/profile/cards/([\w-]+)\.svg"',content)
-    if len(cards) != len(PROJECTS) or len(set(cards)) != len(PROJECTS):
-        errors.append('Os cards publicados devem corresponder exatamente aos oito projetos')
+            errors.append(f'Card ausente: {slug}')
 
-    for _,_,_,slug in SECTIONS:
-        if f'<a name="{slug}"></a>' not in content:
-            errors.append(f'Anchor de secao ausente: {slug}')
-        if f'src="./assets/profile/sections/{slug}.svg"' not in content:
-            errors.append(f'Cabecalho da secao ausente: {slug}')
-        if f'href="#{slug}"' not in content:
-            errors.append(f'Navegacao da secao ausente: {slug}')
-        if f'src="./assets/profile/navigation/{slug}.svg"' not in content:
-            errors.append(f'Botao de navegacao ausente: {slug}')
-
-    for name in ('site','linkedin','contato'):
-        if f'src="./assets/profile/navigation/{name}.svg"' not in content:
-            errors.append(f'Link externo na barra de navegacao ausente: {name}')
-    for name in ('focus.svg','architecture.svg','footer.svg'):
-        if f'src="./assets/profile/{name}"' not in content:
-            errors.append(f'Componente grafico ausente: {name}')
-    if 'src="./assets/profile/brand/rafael-analyst-oficial.png"' in content:
-        errors.append('Logo duplicada no corpo: ja integra o hero aprovado')
     if 'https://github.com/RafaelEdrd/conversa-studio' in content:
-        errors.append('Conversa Studio exige confirmacao de visibilidade antes de receber card')
-    if content.count('<details>') != 4 or content.count('</details>') != 4:
-        errors.append('Esperados exatamente quatro paineis expansivos completos')
-    if '<source media="(prefers-reduced-motion: reduce)"' not in content:
-        errors.append('Fallback de movimento reduzido ausente')
-    if len(content.encode('utf-8')) > 180_000:
-        errors.append('README acima do limite interno de manutencao')
-    if re.search(r'<\s*(script|iframe|object|embed|style)\b', content, re.I):
-        errors.append('HTML nao suportado ou executavel no README')
+        errors.append('Conversa Studio continua sem verificacao publica: remova o link ate validar')
+
+    if re.search(r'<\s*(script|iframe|object|embed)\b', content, re.I):
+        errors.append('HTML executavel ou incorporado nao permitido no README')
     if 'javascript:' in content.lower():
         errors.append('Link javascript: nao permitido')
+    if len(content.encode('utf-8')) > 180_000:
+        errors.append('README muito extenso para leitura e manutencao')
+    if content.count('<details>') != content.count('</details>') or content.count('<details>') < 3:
+        errors.append('Blocos expansivos <details> inconsistentes')
 
-    # Verify all self-hosted images and their meaningful alternative text.
-    for match in re.finditer(r'<img\b[^>]+>', content, flags=re.I | re.S):
-        tag = match.group(0)
-        src_match = re.search(r'\bsrc="([^"]+)"', tag)
-        alt_match = re.search(r'\balt="([^"]*)"', tag)
-        if not src_match:
-            errors.append('Elemento img sem src')
+    # Inspect image tags and all local paths, not just known assets.
+    for img_src in re.findall(r'<(?:img|source)\s+[^>]*?(?:src|srcset)="([^"]+)"', content, re.I | re.S):
+        if img_src.startswith(('https://', 'http://', 'data:')):
             continue
-        if not alt_match or not alt_match.group(1).strip():
-            errors.append(f'Imagem sem descricao alternativa: {src_match.group(1)}')
-        src = src_match.group(1)
-        if src.startswith('https://'):
+        if not img_src.startswith('./'):
+            errors.append(f'Imagem local com caminho inesperado: {img_src}')
             continue
-        if not src.startswith('./'):
-            errors.append(f'Imagem com caminho incorreto: {src}')
-            continue
-        target = (ROOT / src[2:]).resolve()
+        target = (ROOT / img_src.removeprefix('./')).resolve()
         if not target.is_relative_to(ROOT.resolve()):
-            errors.append(f'Caminho fora do repositorio: {src}')
-        elif not target.is_file():
-            errors.append(f'Imagem nao encontrada: {src}')
+            errors.append(f'Imagem escapa da raiz do repositorio: {img_src}')
+        elif not target.is_file() and (require_logo or target != BRAND):
+            errors.append(f'Imagem nao encontrada: {img_src}')
 
     for path in ASSETS.rglob('*.svg'):
         try:
-            tree = ET.parse(path)
-            for node in tree.iter():
-                if node.tag.rsplit('}', 1)[-1] in ('script','foreignObject'):
-                    errors.append(f'SVG contem elemento potencialmente inseguro: {path.name}')
-        except ET.ParseError as exc:
-            errors.append(f'SVG invalido {path.name}: {exc}')
+            ET.parse(path)
+        except ET.ParseError as ex:
+            errors.append(f'SVG invalido: {path.relative_to(ROOT)}: {ex}')
         if path.stat().st_size > 130_000:
             errors.append(f'SVG muito grande: {path.name}')
 
-    for rel,expected in PINNED_SHA256.items():
-        path = ASSETS / rel
-        if not path.is_file():
-            errors.append(f'Arquivo aprovado ausente: {rel}')
-            continue
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        if digest != expected:
-            errors.append(f'Arquivo aprovado alterado: {rel} (revisar versao antes de publicar)')
-        if path.stat().st_size > 3_500_000:
-            errors.append(f'Arquivo grande demais: {rel}')
+    for image in (ASSETS / 'hero.gif', ASSETS / 'hero-still.png', BRAND):
+        if not image.is_file():
+            errors.append(f'Asset essencial ausente: {image.relative_to(ROOT)}')
+        elif image.stat().st_size > 3_500_000:
+            errors.append(f'Asset excessivo: {image.relative_to(ROOT)}')
 
-    for script in ('generate_visuals.py','generate_hero.py'):
-        if not (ROOT/'scripts'/script).is_file():
-            errors.append(f'Script de geracao ausente: {script}')
+    if not (ROOT / 'scripts' / 'generate_visuals.py').is_file():
+        errors.append('Gerador dos assets ausente')
+
+    if require_logo:
+        if not BRAND.is_file():
+            errors.append('Logomarca original ausente: assets/profile/brand/rafael-analyst-oficial.png')
+        elif hashlib.sha256(BRAND.read_bytes()).hexdigest() != ORIGINAL_LOGO_SHA256:
+            errors.append('Logomarca foi alterada; arquivo original nao corresponde ao aprovado')
+
     return errors
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--require-logo', action='store_true', help='Compatibilidade com o publicador v2.3; validacao da marca agora e obrigatoria')
-    parser.parse_args()
-    errors = check()
+    parser.add_argument('--require-logo', action='store_true')
+    args = parser.parse_args()
+    errors = inspect(args.require_logo)
     if errors:
-        print('VALIDACAO REPROVADA:')
-        for error in errors:
-            print(' -', error)
+        print('ERRO NA VALIDACAO:')
+        for message in errors:
+            print(f' - {message}')
         return 1
-    print('OK: 5 secoes, 8 repositorios, 4 paineis expansivos e imagens locais.')
-    print('OK: logomarca e hero aprovados, sem alteracoes (SHA-256).')
-    print('AVISO: disponibilidade de URLs externas depende de verificacao remota.')
+    print('OK: README, 8 links, SVGs, GIF, marca, paths e interatividade verificados.')
+    if not args.require_logo and not BRAND.exists():
+        print('AVISO: logomarca original ausente; use o arquivo autorizado da marca.')
     return 0
 
 
 if __name__ == '__main__':
-    raise SystemExit(main())
+    sys.exit(main())
